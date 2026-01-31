@@ -106,32 +106,6 @@ function exportPosterData() {
     };
     
     console.log("💾 Данные для сайта подготовлены:", dataToExport);
-    
-    // Создаем кнопку для скачивания (временно, пока не настроена автоматика)
-    const downloadBtn = document.createElement('button');
-    downloadBtn.innerText = 'Download Daily Data';
-    downloadBtn.style.position = 'fixed';
-    downloadBtn.style.bottom = '20px';
-    downloadBtn.style.left = '20px';
-    downloadBtn.style.zIndex = '1000';
-    downloadBtn.style.padding = '10px';
-    downloadBtn.style.background = '#ff2d55';
-    downloadBtn.style.color = 'white';
-    downloadBtn.style.border = 'none';
-    downloadBtn.style.borderRadius = '5px';
-    downloadBtn.style.cursor = 'pointer';
-    downloadBtn.style.fontFamily = 'PP Supply Mono, monospace';
-    
-    downloadBtn.onclick = () => {
-        const blob = new Blob([JSON.stringify(dataToExport, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `poster-${dataToExport.date}.json`;
-        a.click();
-    };
-    
-    document.body.appendChild(downloadBtn);
 }
 
 async function fetchRealData() {

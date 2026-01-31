@@ -1,0 +1,77 @@
+{
+  "date": "2026-01-31",
+  "displayDate": "JAN 31, 2026",
+  "bottomWord": "COMPETITION",
+  "stories": [
+    {
+      "id": 1,
+      "headline": "Pro-AI Super PACs Are Already All In on the Midterms",
+      "description": "Silicon Valley’s battle against AI regulation is already shaping the next US election cycle.",
+      "mainLocation": {
+        "name": "SILICON VALLEY, USA",
+        "lat": 37.4429964,
+        "lng": -122.1545229
+      },
+      "intensity": 95,
+      "color": "#ff2d55",
+      "url": "https://www.wired.com/story/ai-super-pacs-trying-to-influence-midterms/",
+      "imageUrl": "https://media.wired.com/photos/692f741352fbb4b6e88b7f25/191:100/w_1280,c_limit/Pol_Midterms_GettyImages-1483069362.jpg"
+    },
+    {
+      "id": 2,
+      "headline": "Iran protests: hundreds feared dead",
+      "description": "Hospital staff in Iran say they are overwhelmed with dead or injured patients",
+      "mainLocation": {
+        "name": "TEHRAN, IRAN",
+        "lat": 35.6892523,
+        "lng": 51.3896004
+      },
+      "intensity": 82,
+      "color": "#ff6b35",
+      "url": "https://www.bbc.co.uk/sounds/play/p0mtc2kn",
+      "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0mtc2l9.jpg"
+    },
+    {
+      "id": 3,
+      "headline": "China's AI push is about spreading economic gains, not enriching tech giants, a finance CEO says",
+      "description": "China prioritizes open AI to spread economic gains, says finance CEO.",
+      "mainLocation": {
+        "name": "BEIJING, CHINA",
+        "lat": 40.190632,
+        "lng": 116.412144
+      },
+      "intensity": 66,
+      "color": "#ffb800",
+      "url": "https://www.businessinsider.com/china-open-source-model-ai-gains-across-economy-finance-ceo-2026-1",
+      "imageUrl": "https://i.insider.com/697107d6d3c7faef0ecca92e?width=1200&format=jpeg"
+    },
+    {
+      "id": 4,
+      "headline": "Zoom Is the First Casualty in France’s War on American Big Tech",
+      "description": "Homebrewed video conferencing may not be a moonshot, but you gotta start somewhere.",
+      "mainLocation": {
+        "name": "PARIS, FRANCE",
+        "lat": 48.8588897,
+        "lng": 2.320041
+      },
+      "intensity": 69,
+      "color": "#34c759",
+      "url": "https://gizmodo.com/zoom-is-the-first-casualty-in-frances-war-on-american-big-tech-2000714545",
+      "imageUrl": "https://gizmodo.com/app/uploads/2026/01/macron-1200x675.jpg"
+    },
+    {
+      "id": 5,
+      "headline": "Trump v China: How Oil Is Defining Great Power Politics",
+      "description": "What is this new era of global politics and where it does it leave Europe?",
+      "mainLocation": {
+        "name": "BEIJING, CHINA",
+        "lat": 40.190632,
+        "lng": 116.412144
+      },
+      "intensity": 61,
+      "color": "#5ac8fa",
+      "url": "https://www.bbc.co.uk/sounds/play/m002pqpq",
+      "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0lgrqgm.jpg"
+    }
+  ]
+}

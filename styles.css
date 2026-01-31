@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PP Neue Montreal/PPNeueMontreal-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('fonts/PP Neue Montreal/PPNeueMontreal-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Neue Bit';
+    src: url('fonts/PPNeuebit/PPNeueBit-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PP Supply Mono';
+    src: url('fonts/PP Supply/Mono/PPSupplyMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --bg-primary: #08090c;
+    --text-primary: #e8e9eb;
+    --text-muted: #8b8d93;
+    
+    --font-main: 'PP Neue Montreal', sans-serif;
+    --font-display: 'PP Neue Bit', serif;
+    --font-mono: 'PP Supply Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.poster-container {
+    width: 600px;
+    height: 800px;
+    background: var(--bg-primary);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    border: 1px solid #1a1e28;
+}
+
+/* Top Explanation Blocks */
+.top-blocks {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    z-index: 10;
+}
+
+.explanation-block {
+    flex: 1;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    line-height: 1.4;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Middle Titles */
+.middle-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.news-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Bottom Word */
+.bottom-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 10;
+}
+
+.big-word {
+    font-family: var(--font-display);
+    font-size: 80px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+}
+
+/* Canvas Container */
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}

@@ -383,7 +383,8 @@ function drawHeatmap() {
         const story = topStories[i];
         const pos = storyPositions[i];
         
-        if (!story.mainLocation) continue;
+        // Раньше здесь была проверка if (!story.mainLocation) continue;
+        // Теперь рисуем градиент ВСЕГДА, так как он создает атмосферу макета
         
         const maxRadius = map(story.intensity, 40, 100, 200, 500);
         
@@ -396,8 +397,12 @@ function drawHeatmap() {
             let noiseVal = noise(r * 0.008, i * 10) * 30; 
             ellipse(pos.x, pos.y, r + noiseVal);
         }
-        fill(255, 180);
-        ellipse(pos.x, pos.y, 8);
+
+        // Белую точку в центре рисуем только если есть реальная локация
+        if (story.mainLocation) {
+            fill(255, 180);
+            ellipse(pos.x, pos.y, 8);
+        }
     }
 }
 
@@ -450,15 +455,15 @@ function drawMarkers() {
         const story = topStories[i];
         const pos = storyPositions[i];
         
-        if (!story.mainLocation) continue;
+        // Подписи (город и координаты) рисуем только если есть локация
+        if (story.mainLocation) {
+            drawStoryMarker(pos.x, pos.y, story, i);
 
-        // Рисуем маркер и подпись в зависимости от индекса (0-верх, 1-середина, 2-низ)
-        drawStoryMarker(pos.x, pos.y, story, i);
-
-        // Основная точка
-        fill(255, 200);
-        noStroke();
-        ellipse(pos.x, pos.y, 6);
+            // Основная точка
+            fill(255, 200);
+            noStroke();
+            ellipse(pos.x, pos.y, 6);
+        }
     }
 }
 

@@ -5,69 +5,53 @@
   "stories": [
     {
       "id": 1,
-      "headline": "Pro-AI Super PACs Are Already All In on the Midterms",
-      "description": "Silicon Valley’s battle against AI regulation is already shaping the next US election cycle.",
+      "headline": "The painful questions for Nato and the EU as Trump threatens Greenland",
+      "description": "Were Trump to make good on his ambition to bring Greenland under US control, would it mark not just ...",
       "mainLocation": null,
-      "intensity": 97,
+      "intensity": 60,
       "color": "#ff2d55",
-      "url": "https://www.wired.com/story/ai-super-pacs-trying-to-influence-midterms/",
-      "imageUrl": "https://media.wired.com/photos/692f741352fbb4b6e88b7f25/191:100/w_1280,c_limit/Pol_Midterms_GettyImages-1483069362.jpg"
+      "url": "https://www.bbc.com/news/articles/cpwn2wjzwndo",
+      "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/5f1f/live/983a71a0-eb0b-11f0-b385-5f48925de19a.jpg"
     },
     {
       "id": 2,
-      "headline": "Iran protests: hundreds feared dead",
-      "description": "Hospital staff in Iran say they are overwhelmed with dead or injured patients",
-      "mainLocation": {
-        "name": "TEHRAN, IRAN",
-        "lat": 35.6892523,
-        "lng": 51.3896004
-      },
-      "intensity": 97,
+      "headline": "How AI Companies Got Caught Up in US Military Efforts",
+      "description": "Two years ago, companies like Meta and OpenAI were united against military use of their tools. Now a...",
+      "mainLocation": null,
+      "intensity": 60,
       "color": "#ff6b35",
-      "url": "https://www.bbc.co.uk/sounds/play/p0mtc2kn",
-      "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0mtc2l9.jpg"
+      "url": "https://www.wired.com/story/book-excerpt-silicon-empires-nick-srnicek/",
+      "imageUrl": "https://media.wired.com/photos/69614ce6de24535c06b95baa/191:100/w_1280,c_limit/Book-Excerpt-How-AI-Companies-Got-Involved-in-US-Military-Efforts-Politics-2220173893.jpg"
     },
     {
       "id": 3,
-      "headline": "China's AI push is about spreading economic gains, not enriching tech giants, a finance CEO says",
-      "description": "Hisham Alrayes, CEO of GFH Financial Group, said China is prioritizing open models to spread AI's ga...",
-      "mainLocation": {
-        "name": "BEIJING, CHINA",
-        "lat": 40.190632,
-        "lng": 116.412144
-      },
-      "intensity": 95,
+      "headline": "After Venezuela, is the world order shifting from diplomacy towards aggression?",
+      "description": "NPR's Sacha Pfeiffer talks with Peter Krause of Boston College about the Trump Administration's will...",
+      "mainLocation": null,
+      "intensity": 60,
       "color": "#ffb800",
-      "url": "https://www.businessinsider.com/china-open-source-model-ai-gains-across-economy-finance-ceo-2026-1",
-      "imageUrl": "https://i.insider.com/697107d6d3c7faef0ecca92e?width=1200&format=jpeg"
+      "url": "https://www.npr.org/2026/01/11/nx-s1-5671132/after-venezuela-is-the-world-order-shifting-from-diplomacy-towards-aggression",
+      "imageUrl": "https://media.npr.org/include/images/facebook-default-wide-s1400-c85.jpg"
     },
     {
       "id": 4,
-      "headline": "Zoom Is the First Casualty in France’s War on American Big Tech",
-      "description": "Homebrewed video conferencing may not be a moonshot, but you gotta start somewhere.",
-      "mainLocation": {
-        "name": "PARIS, FRANCE",
-        "lat": 48.8588897,
-        "lng": 2.320041
-      },
-      "intensity": 78,
+      "headline": "Political science professor talks about María Corina Machado's meeting with Trump",
+      "description": "NPR's A Martinez talks to Eduardo Gamarra, a politics and international relations professor at Flori...",
+      "mainLocation": null,
+      "intensity": 60,
       "color": "#34c759",
-      "url": "https://gizmodo.com/zoom-is-the-first-casualty-in-frances-war-on-american-big-tech-2000714545",
-      "imageUrl": "https://gizmodo.com/app/uploads/2026/01/macron-1200x675.jpg"
+      "url": "https://www.npr.org/2026/01/16/nx-s1-5678564/political-science-professor-talks-about-maria-corina-machados-meeting-with-trump",
+      "imageUrl": "https://media.npr.org/include/images/facebook-default-wide-s1400-c85.jpg"
     },
     {
       "id": 5,
-      "headline": "Trump v China: How Oil Is Defining Great Power Politics",
-      "description": "What is this new era of global politics and where it does it leave Europe?",
-      "mainLocation": {
-        "name": "BEIJING, CHINA",
-        "lat": 40.190632,
-        "lng": 116.412144
-      },
-      "intensity": 61,
+      "headline": "A Scientific Breakthrough Has Unveiled the Ancient Source of Our Pain",
+      "description": "Recent genetic studies highlight how Neanderthal DNA contributes to the sensitivity experienced by m...",
+      "mainLocation": null,
+      "intensity": 60,
       "color": "#5ac8fa",
-      "url": "https://www.bbc.co.uk/sounds/play/m002pqpq",
-      "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0lgrqgm.jpg"
+      "url": "https://www.popularmechanics.com/science/a69967360/neanderthal-gene-modern-sensitivity-discovery/",
+      "imageUrl": "https://s.yimg.com/ny/api/res/1.2/w9LsvS0Lx3OGsDE_W85ZoQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://media.zenfs.com/en/popular_mechanics_642/2b63f8bf0478b18fd10490ad0da7a390"
     }
   ]
 }

@@ -3,15 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Ключи API (берутся из переменных окружения)
-const NEWS_API_KEY = process.env.NEWS_API_KEY;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
-if (!NEWS_API_KEY || !GEMINI_API_KEY) {
-    console.error("❌ Ошибка: API ключи не найдены в переменных окружения!");
-    console.error("Убедитесь, что NEWS_API_KEY и GEMINI_API_KEY установлены.");
-    process.exit(1);
-}
+// Ключи API
+const NEWS_API_KEY = process.env.NEWS_API_KEY || 'e995fc4497af487f887bf84cd5f679e8';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyCshPuWQNXPWLxTDLyWBAi_J0oytI-zl4U';
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
@@ -44,13 +38,16 @@ const countryKeywords = {
 async function analyzeLocationWithAI(title, description) {
     try {
         const prompt = `Analyze this news headline and description. Determine the most relevant geographic location (city and country) where the event is happening or where the main organization is based. 
+        IMPORTANT: Focus on serious global news. If the news is about celebrity gossip, entertainment, or trivial social media trends, return "Skip".
+        
         Example: "OpenAI releases new model" -> San Francisco, USA.
         Example: "EU imposes new sanctions" -> Brussels, Belgium.
+        Example: "Spencer Pratt says..." -> Skip.
         
         News Title: "${title}"
         Description: "${description}"
         
-        Return ONLY the city and country name, separated by a comma. If no specific location can be determined, return "Global".`;
+        Return ONLY the city and country name, separated by a comma. If no specific location can be determined, return "Global". If it should be skipped, return "Skip".`;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
@@ -60,6 +57,54 @@ async function analyzeLocationWithAI(title, description) {
     } catch (error) {
         console.error("⚠️ Ошибка ИИ при анализе локации:", error.message);
         return null;
+    }
+}
+
+/**
+ * Функция для оценки важности новости через ИИ
+ */
+async function analyzeIntensityWithAI(title, description) {
+    try {
+        const prompt = `Rate the global importance and scale of this news on a scale from 40 to 100.
+        100 = Major global event (war, global crisis, pandemic, world-changing breakthrough).
+        70 = Significant international news (major policy change, large-scale protest, big tech release).
+        40 = Normal international news or regional event.
+        
+        News Title: "${title}"
+        Description: "${description}"
+        
+        Return ONLY the number.`;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text().trim();
+        const intensity = parseInt(text.replace(/[^0-9]/g, ''));
+        
+        return isNaN(intensity) ? 60 : Math.min(100, Math.max(40, intensity));
+    } catch (error) {
+        console.error("⚠️ Ошибка ИИ при анализе интенсивности:", error.message);
+        return 60;
+    }
+}
+
+/**
+ * Функция для сокращения заголовка новости через ИИ
+ */
+async function shortenHeadlineWithAI(headline) {
+    try {
+        const prompt = `Shorten this news headline to be very impactful and concise, like a poster title.
+        It should be maximum 60 characters long and easy to read in 2-3 short lines.
+        
+        Original Headline: "${headline}"
+        
+        Return ONLY the shortened headline text in uppercase.`;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        return response.text().trim().toUpperCase();
+    } catch (error) {
+        console.error("⚠️ Ошибка ИИ при сокращении заголовка:", error.message);
+        return headline.substring(0, 60).toUpperCase();
     }
 }
 
@@ -139,15 +184,9 @@ async function generateDailyData() {
     console.log("📡 Робот запускает сбор новостей с ИИ-анализом...");
     
     try {
-        // Получаем новости за последние 24 часа
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const fromDate = yesterday.toISOString().split('T')[0];
+        const query = 'geopolitics OR "world events" OR "international relations" OR "global economy" OR "major crisis" OR "scientific breakthrough" OR AI';
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&sortBy=relevancy&pageSize=20&apiKey=${NEWS_API_KEY}`;
         
-        const query = 'war OR election OR economy OR crisis OR "breaking news" OR politics OR "tech giants" OR AI';
-        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&from=${fromDate}&sortBy=publishedAt&pageSize=15&apiKey=${NEWS_API_KEY}`;
-        
-        console.log(`🔍 Ищем новости с ${fromDate}...`);
         const response = await fetch(url);
         const data = await response.json();
         
@@ -159,26 +198,39 @@ async function generateDailyData() {
             );
 
             const topStories = [];
-            const processedArticles = filteredArticles.slice(0, 5);
+            const processedArticles = filteredArticles.slice(0, 10);
 
             for (let i = 0; i < processedArticles.length; i++) {
+                if (topStories.length >= 5) break; // Нам нужно только 5 лучших новостей
                 const art = processedArticles[i];
                 let cleanTitle = art.title.split(' - ')[0];
                 let content = art.description || art.content || "";
                 
                 console.log(`\n📰 Новость ${i+1}: ${cleanTitle}`);
                 
-                // 1. Сокращаем текст через ИИ, если он слишком длинный
+                // 1. Сокращаем заголовок через ИИ, если он слишком длинный
+                let finalTitle = cleanTitle;
+                if (cleanTitle.length > 50) {
+                    console.log(`📝 Заголовок слишком длинный (${cleanTitle.length} симв.), сокращаем через ИИ...`);
+                    finalTitle = await shortenHeadlineWithAI(cleanTitle);
+                }
+
+                // 2. Сокращаем текст через ИИ, если он слишком длинный
                 let finalDesc = content;
                 if (content.length > 120) {
                     console.log(`📝 Текст слишком длинный (${content.length} симв.), сокращаем через ИИ...`);
-                    finalDesc = await shortenDescriptionWithAI(cleanTitle, content);
+                    finalDesc = await shortenDescriptionWithAI(finalTitle, content);
                 }
                 
-                // 2. Спрашиваем ИИ про локацию
+                // 3. Спрашиваем ИИ про локацию
                 console.log(`🤖 ИИ анализирует локацию...`);
-                const aiLocation = await analyzeLocationWithAI(cleanTitle, content);
+                const aiLocation = await analyzeLocationWithAI(finalTitle, content);
                 
+                if (aiLocation === "Skip") {
+                    console.log(`⏭️ ИИ рекомендовал пропустить эту новость (развлекательный контент).`);
+                    continue; 
+                }
+
                 let city = null;
                 if (aiLocation) {
                     console.log(`📍 ИИ определил локацию: ${aiLocation}. Ищем координаты...`);
@@ -205,17 +257,22 @@ async function generateDailyData() {
                     }
                 }
 
-                // Если и словарь не помог — city останется null
+                // 4. Если город не определен — просто оставляем null, фейковые данные не используем
                 if (!city) {
                     console.log(`❌ Локация не определена. Точка на карте не будет показана.`);
                 }
                 
+                // 5. Оцениваем интенсивность через ИИ
+                console.log(`📊 ИИ оценивает важность новости...`);
+                const aiIntensity = await analyzeIntensityWithAI(cleanTitle, content);
+                console.log(`📈 Оценка интенсивности: ${aiIntensity}/100`);
+
                 topStories.push({
                     id: i + 1,
                     headline: cleanTitle,
                     description: finalDesc,
                     mainLocation: city,
-                    intensity: Math.floor(Math.random() * 40) + 60,
+                    intensity: aiIntensity,
                     color: colors[i % colors.length],
                     url: art.url,
                     imageUrl: art.urlToImage

@@ -5,53 +5,61 @@
   "stories": [
     {
       "id": 1,
-      "headline": "The painful questions for Nato and the EU as Trump threatens Greenland",
-      "description": "Were Trump to make good on his ambition to bring Greenland under US control, would it mark not just ...",
-      "mainLocation": null,
+      "headline": "Jeffrey Epstein Had a ‘Personal Hacker,’ Informant Claims",
+      "description": "Plus: AI agent OpenClaw gives cybersecurity experts the willies, China executes 11 scam compound bos...",
+      "mainLocation": {
+        "name": "BEIJING, CHINA",
+        "lat": 40.190632,
+        "lng": 116.412144
+      },
       "intensity": 60,
       "color": "#ff2d55",
-      "url": "https://www.bbc.com/news/articles/cpwn2wjzwndo",
-      "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/5f1f/live/983a71a0-eb0b-11f0-b385-5f48925de19a.jpg"
+      "url": "https://www.wired.com/story/security-news-this-week-jeffrey-epstein-had-a-personal-hacker-informant-claims/",
+      "imageUrl": "https://media.wired.com/photos/694af897996cb37f65fe2d98/191:100/w_1280,c_limit/1_New_Epstein_GettyImages-2252159204.jpg"
     },
     {
       "id": 2,
-      "headline": "How AI Companies Got Caught Up in US Military Efforts",
-      "description": "Two years ago, companies like Meta and OpenAI were united against military use of their tools. Now a...",
+      "headline": "'I spoke to ChatGPT 8 times a day'",
+      "description": "AI chatbots are being used as 'surrogate friends' by young people who have lost the ability to socialise.",
       "mainLocation": null,
       "intensity": 60,
       "color": "#ff6b35",
-      "url": "https://www.wired.com/story/book-excerpt-silicon-empires-nick-srnicek/",
-      "imageUrl": "https://media.wired.com/photos/69614ce6de24535c06b95baa/191:100/w_1280,c_limit/Book-Excerpt-How-AI-Companies-Got-Involved-in-US-Military-Efforts-Politics-2220173893.jpg"
+      "url": "https://www.bbc.com/news/articles/cg4ewrw2drpo",
+      "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/0d72/live/38ec35b0-fd0a-11f0-833e-6bf0186607ca.jpg"
     },
     {
       "id": 3,
-      "headline": "After Venezuela, is the world order shifting from diplomacy towards aggression?",
-      "description": "NPR's Sacha Pfeiffer talks with Peter Krause of Boston College about the Trump Administration's will...",
+      "headline": "xAI Wants to Hire Award-Winning Writers to Train Elon Musk’s Stupid AI Chatbot",
+      "description": "How many award-winning writers are desperate enough to train Grok?",
       "mainLocation": null,
       "intensity": 60,
       "color": "#ffb800",
-      "url": "https://www.npr.org/2026/01/11/nx-s1-5671132/after-venezuela-is-the-world-order-shifting-from-diplomacy-towards-aggression",
-      "imageUrl": "https://media.npr.org/include/images/facebook-default-wide-s1400-c85.jpg"
+      "url": "https://gizmodo.com/xai-wants-to-hire-award-winning-writers-to-train-elon-musks-stupid-ai-chatbot-2000716233",
+      "imageUrl": "https://gizmodo.com/app/uploads/2025/11/grok-1200x675.jpg"
     },
     {
       "id": 4,
-      "headline": "Political science professor talks about María Corina Machado's meeting with Trump",
-      "description": "NPR's A Martinez talks to Eduardo Gamarra, a politics and international relations professor at Flori...",
-      "mainLocation": null,
+      "headline": "A nice upgrade for Apple’s simplest gadget",
+      "description": "Hi, friends! Welcome to Installer No. 114, your guide to the best and Verge-iest stuff in the world....",
+      "mainLocation": {
+        "name": "CUPERTINO, USA",
+        "lat": 37.3228934,
+        "lng": -122.0322895
+      },
       "intensity": 60,
       "color": "#34c759",
-      "url": "https://www.npr.org/2026/01/16/nx-s1-5678564/political-science-professor-talks-about-maria-corina-machados-meeting-with-trump",
-      "imageUrl": "https://media.npr.org/include/images/facebook-default-wide-s1400-c85.jpg"
+      "url": "https://www.theverge.com/tech/871493/apple-airtags-yahoo-scout-wonder-man-installer",
+      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/Installer-114.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
     },
     {
       "id": 5,
-      "headline": "A Scientific Breakthrough Has Unveiled the Ancient Source of Our Pain",
-      "description": "Recent genetic studies highlight how Neanderthal DNA contributes to the sensitivity experienced by m...",
+      "headline": "You can watch a 'Video Overview' of your NotebookLM research on Android now, and more",
+      "description": "NotebookLM is bringing more AI-generated magic to help users study and learn on Android with videos.",
       "mainLocation": null,
       "intensity": 60,
       "color": "#5ac8fa",
-      "url": "https://www.popularmechanics.com/science/a69967360/neanderthal-gene-modern-sensitivity-discovery/",
-      "imageUrl": "https://s.yimg.com/ny/api/res/1.2/w9LsvS0Lx3OGsDE_W85ZoQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://media.zenfs.com/en/popular_mechanics_642/2b63f8bf0478b18fd10490ad0da7a390"
+      "url": "https://www.androidcentral.com/apps-software/ai/you-can-watch-a-video-overview-of-your-notebooklm-research-on-android-now-and-more",
+      "imageUrl": "https://cdn.mos.cms.futurecdn.net/FnBoP3fWh9CL34MmRodxki-2560-80.jpg"
     }
   ]
 }

@@ -5,7 +5,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Ключи API
 const NEWS_API_KEY = process.env.NEWS_API_KEY || 'e995fc4497af487f887bf84cd5f679e8';
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyCshPuWQNXPWLxTDLyWBAi_J0oytI-zl4U';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
@@ -29,7 +29,16 @@ const countryKeywords = {
     'Iran': 'Tehran, Iran',
     'Taiwan': 'Taipei, Taiwan',
     'Turkey': 'Ankara, Turkey',
-    'Italy': 'Rome, Italy'
+    'Italy': 'Rome, Italy',
+    'Greenland': 'Nuuk, Greenland',
+    'NATO': 'Brussels, Belgium',
+    'EU': 'Brussels, Belgium',
+    'Venezuela': 'Caracas, Venezuela',
+    'OpenAI': 'San Francisco, USA',
+    'Meta': 'Menlo Park, USA',
+    'Apple': 'Cupertino, USA',
+    'Google': 'Mountain View, USA',
+    'Samsung': 'Seoul, South Korea'
 };
 
 /**
@@ -184,8 +193,13 @@ async function generateDailyData() {
     console.log("📡 Робот запускает сбор новостей с ИИ-анализом...");
     
     try {
+        const today = new Date();
+        const fromDate = new Date(today);
+        fromDate.setDate(today.getDate() - 1);
+        const fromIso = fromDate.toISOString().split('T')[0];
+        
         const query = 'geopolitics OR "world events" OR "international relations" OR "global economy" OR "major crisis" OR "scientific breakthrough" OR AI';
-        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&sortBy=relevancy&pageSize=20&apiKey=${NEWS_API_KEY}`;
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&from=${fromIso}&language=en&sortBy=relevancy&pageSize=40&apiKey=${NEWS_API_KEY}`;
         
         const response = await fetch(url);
         const data = await response.json();
@@ -194,11 +208,14 @@ async function generateDailyData() {
             const colors = ["#ff2d55", "#ff6b35", "#ffb800", "#34c759", "#5ac8fa"];
             
             const filteredArticles = data.articles.filter(art => 
-                art.title && art.title.length > 30
+                art.title && art.title.length > 30 && 
+                !art.title.toLowerCase().includes("review") &&
+                !art.title.toLowerCase().includes("deal") &&
+                !art.title.toLowerCase().includes("how to")
             );
 
             const topStories = [];
-            const processedArticles = filteredArticles.slice(0, 10);
+            const processedArticles = filteredArticles;
 
             for (let i = 0; i < processedArticles.length; i++) {
                 if (topStories.length >= 5) break; // Нам нужно только 5 лучших новостей

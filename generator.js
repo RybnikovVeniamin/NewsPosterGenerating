@@ -3,9 +3,15 @@ const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Ключи API
-const NEWS_API_KEY = process.env.NEWS_API_KEY || 'e995fc4497af487f887bf84cd5f679e8';
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyCshPuWQNXPWLxTDLyWBAi_J0oytI-zl4U';
+// Ключи API (берутся из переменных окружения)
+const NEWS_API_KEY = process.env.NEWS_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+if (!NEWS_API_KEY || !GEMINI_API_KEY) {
+    console.error("❌ Ошибка: API ключи не найдены в переменных окружения!");
+    console.error("Убедитесь, что NEWS_API_KEY и GEMINI_API_KEY установлены.");
+    process.exit(1);
+}
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
@@ -133,9 +139,15 @@ async function generateDailyData() {
     console.log("📡 Робот запускает сбор новостей с ИИ-анализом...");
     
     try {
-        const query = 'war OR election OR economy OR crisis OR "breaking news" OR politics OR "tech giants" OR AI';
-        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&sortBy=relevancy&pageSize=15&apiKey=${NEWS_API_KEY}`;
+        // Получаем новости за последние 24 часа
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const fromDate = yesterday.toISOString().split('T')[0];
         
+        const query = 'war OR election OR economy OR crisis OR "breaking news" OR politics OR "tech giants" OR AI';
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&from=${fromDate}&sortBy=publishedAt&pageSize=15&apiKey=${NEWS_API_KEY}`;
+        
+        console.log(`🔍 Ищем новости с ${fromDate}...`);
         const response = await fetch(url);
         const data = await response.json();
         

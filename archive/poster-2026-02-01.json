@@ -8,7 +8,7 @@
       "headline": "Pro-AI Super PACs Are Already All In on the Midterms",
       "description": "Silicon Valley’s battle against AI regulation is already shaping the next US election cycle.",
       "mainLocation": null,
-      "intensity": 96,
+      "intensity": 97,
       "color": "#ff2d55",
       "url": "https://www.wired.com/story/ai-super-pacs-trying-to-influence-midterms/",
       "imageUrl": "https://media.wired.com/photos/692f741352fbb4b6e88b7f25/191:100/w_1280,c_limit/Pol_Midterms_GettyImages-1483069362.jpg"
@@ -22,7 +22,7 @@
         "lat": 35.6892523,
         "lng": 51.3896004
       },
-      "intensity": 72,
+      "intensity": 97,
       "color": "#ff6b35",
       "url": "https://www.bbc.co.uk/sounds/play/p0mtc2kn",
       "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0mtc2l9.jpg"
@@ -36,7 +36,7 @@
         "lat": 40.190632,
         "lng": 116.412144
       },
-      "intensity": 68,
+      "intensity": 95,
       "color": "#ffb800",
       "url": "https://www.businessinsider.com/china-open-source-model-ai-gains-across-economy-finance-ceo-2026-1",
       "imageUrl": "https://i.insider.com/697107d6d3c7faef0ecca92e?width=1200&format=jpeg"
@@ -50,7 +50,7 @@
         "lat": 48.8588897,
         "lng": 2.320041
       },
-      "intensity": 84,
+      "intensity": 78,
       "color": "#34c759",
       "url": "https://gizmodo.com/zoom-is-the-first-casualty-in-frances-war-on-american-big-tech-2000714545",
       "imageUrl": "https://gizmodo.com/app/uploads/2026/01/macron-1200x675.jpg"
@@ -64,7 +64,7 @@
         "lat": 40.190632,
         "lng": 116.412144
       },
-      "intensity": 88,
+      "intensity": 61,
       "color": "#5ac8fa",
       "url": "https://www.bbc.co.uk/sounds/play/m002pqpq",
       "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0lgrqgm.jpg"

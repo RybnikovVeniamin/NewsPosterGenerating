@@ -1,7 +1,7 @@
 {
   "date": "2026-02-01",
   "displayDate": "FEB 1, 2026",
-  "bottomWord": "GLOBAL",
+  "bottomWord": "INTEGRATION",
   "stories": [
     {
       "id": 1,
@@ -12,7 +12,7 @@
         "lat": 40.190632,
         "lng": 116.412144
       },
-      "intensity": 60,
+      "intensity": 45,
       "color": "#ff2d55",
       "url": "https://www.wired.com/story/security-news-this-week-jeffrey-epstein-had-a-personal-hacker-informant-claims/",
       "imageUrl": "https://media.wired.com/photos/694af897996cb37f65fe2d98/191:100/w_1280,c_limit/1_New_Epstein_GettyImages-2252159204.jpg"
@@ -22,7 +22,7 @@
       "headline": "'I spoke to ChatGPT 8 times a day'",
       "description": "AI chatbots are being used as 'surrogate friends' by young people who have lost the ability to socialise.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 45,
       "color": "#ff6b35",
       "url": "https://www.bbc.com/news/articles/cg4ewrw2drpo",
       "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/0d72/live/38ec35b0-fd0a-11f0-833e-6bf0186607ca.jpg"
@@ -32,7 +32,7 @@
       "headline": "xAI Wants to Hire Award-Winning Writers to Train Elon Musk’s Stupid AI Chatbot",
       "description": "How many award-winning writers are desperate enough to train Grok?",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 45,
       "color": "#ffb800",
       "url": "https://gizmodo.com/xai-wants-to-hire-award-winning-writers-to-train-elon-musks-stupid-ai-chatbot-2000716233",
       "imageUrl": "https://gizmodo.com/app/uploads/2025/11/grok-1200x675.jpg"
@@ -40,13 +40,13 @@
     {
       "id": 4,
       "headline": "A nice upgrade for Apple’s simplest gadget",
-      "description": "Hi, friends! Welcome to Installer No. 114, your guide to the best and Verge-iest stuff in the world....",
+      "description": "A great new upgrade is coming to Apple's simplest gadget.",
       "mainLocation": {
         "name": "CUPERTINO, USA",
         "lat": 37.3228934,
         "lng": -122.0322895
       },
-      "intensity": 60,
+      "intensity": 40,
       "color": "#34c759",
       "url": "https://www.theverge.com/tech/871493/apple-airtags-yahoo-scout-wonder-man-installer",
       "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/Installer-114.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
@@ -56,7 +56,7 @@
       "headline": "You can watch a 'Video Overview' of your NotebookLM research on Android now, and more",
       "description": "NotebookLM is bringing more AI-generated magic to help users study and learn on Android with videos.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 42,
       "color": "#5ac8fa",
       "url": "https://www.androidcentral.com/apps-software/ai/you-can-watch-a-video-overview-of-your-notebooklm-research-on-android-now-and-more",
       "imageUrl": "https://cdn.mos.cms.futurecdn.net/FnBoP3fWh9CL34MmRodxki-2560-80.jpg"

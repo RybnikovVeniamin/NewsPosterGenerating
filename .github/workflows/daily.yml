@@ -33,4 +33,5 @@ jobs:
         git config --local user.name "GitHub Action"
         git add archive/*.json latest.json
         git commit -m "Add daily news data: $(date +%Y-%m-%d)" || echo "No changes to commit"
-        git push
+        git pull --rebase origin main
+        git push origin main

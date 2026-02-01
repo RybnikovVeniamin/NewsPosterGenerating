@@ -1,14 +1,14 @@
 {
   "date": "2026-02-01",
   "displayDate": "FEB 1, 2026",
-  "bottomWord": "GLOBAL",
+  "bottomWord": "UNCERTAINTY",
   "stories": [
     {
       "id": 1,
       "headline": "The painful questions for Nato and the EU as Trump threatens Greenland",
-      "description": "Were Trump to make good on his ambition to bring Greenland under US control, would it mark not just ...",
+      "description": "Trump's Greenland bid threatens NATO and EU stability.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 55,
       "color": "#ff2d55",
       "url": "https://www.bbc.com/news/articles/cpwn2wjzwndo",
       "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/5f1f/live/983a71a0-eb0b-11f0-b385-5f48925de19a.jpg"
@@ -16,9 +16,9 @@
     {
       "id": 2,
       "headline": "How AI Companies Got Caught Up in US Military Efforts",
-      "description": "Two years ago, companies like Meta and OpenAI were united against military use of their tools. Now a...",
+      "description": "AI firms like Meta & OpenAI now support military use, a shift from their stance two years ago.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 65,
       "color": "#ff6b35",
       "url": "https://www.wired.com/story/book-excerpt-silicon-empires-nick-srnicek/",
       "imageUrl": "https://media.wired.com/photos/69614ce6de24535c06b95baa/191:100/w_1280,c_limit/Book-Excerpt-How-AI-Companies-Got-Involved-in-US-Military-Efforts-Politics-2220173893.jpg"
@@ -26,9 +26,9 @@
     {
       "id": 3,
       "headline": "After Venezuela, is the world order shifting from diplomacy towards aggression?",
-      "description": "NPR's Sacha Pfeiffer talks with Peter Krause of Boston College about the Trump Administration's will...",
+      "description": "Expert discusses Trump admin. and rising aggression in Venezuela.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 65,
       "color": "#ffb800",
       "url": "https://www.npr.org/2026/01/11/nx-s1-5671132/after-venezuela-is-the-world-order-shifting-from-diplomacy-towards-aggression",
       "imageUrl": "https://media.npr.org/include/images/facebook-default-wide-s1400-c85.jpg"
@@ -36,9 +36,13 @@
     {
       "id": 4,
       "headline": "Political science professor talks about María Corina Machado's meeting with Trump",
-      "description": "NPR's A Martinez talks to Eduardo Gamarra, a politics and international relations professor at Flori...",
-      "mainLocation": null,
-      "intensity": 60,
+      "description": "Expert discusses Machado's meeting with Trump and Venezuela's future.",
+      "mainLocation": {
+        "name": "MIAMI, USA",
+        "lat": 25.7741566,
+        "lng": -80.1935973
+      },
+      "intensity": 45,
       "color": "#34c759",
       "url": "https://www.npr.org/2026/01/16/nx-s1-5678564/political-science-professor-talks-about-maria-corina-machados-meeting-with-trump",
       "imageUrl": "https://media.npr.org/include/images/facebook-default-wide-s1400-c85.jpg"
@@ -46,9 +50,9 @@
     {
       "id": 5,
       "headline": "A Scientific Breakthrough Has Unveiled the Ancient Source of Our Pain",
-      "description": "Recent genetic studies highlight how Neanderthal DNA contributes to the sensitivity experienced by m...",
+      "description": "Neanderthal DNA impacts modern pain sensitivity, new studies reveal.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 45,
       "color": "#5ac8fa",
       "url": "https://www.popularmechanics.com/science/a69967360/neanderthal-gene-modern-sensitivity-discovery/",
       "imageUrl": "https://s.yimg.com/ny/api/res/1.2/w9LsvS0Lx3OGsDE_W85ZoQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://media.zenfs.com/en/popular_mechanics_642/2b63f8bf0478b18fd10490ad0da7a390"

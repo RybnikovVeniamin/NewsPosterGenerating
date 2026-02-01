@@ -1,73 +1,61 @@
 {
   "date": "2026-02-01",
   "displayDate": "FEB 1, 2026",
-  "bottomWord": "GLOBAL",
+  "bottomWord": "CHANGE",
   "stories": [
     {
       "id": 1,
-      "headline": "Pro-AI Super PACs Are Already All In on the Midterms",
-      "description": "Silicon Valley’s battle against AI regulation is already shaping the next US election cycle.",
-      "mainLocation": null,
-      "intensity": 97,
+      "headline": "Spencer Pratt says A-listers privately cheer his criticism of California leadership, fear career fallout",
+      "description": "Spencer Pratt says A-listers back his California criticism but fear career fallout.",
+      "mainLocation": {
+        "name": "LOS ANGELES, USA",
+        "lat": 34.0536909,
+        "lng": -118.242766
+      },
+      "intensity": 67,
       "color": "#ff2d55",
-      "url": "https://www.wired.com/story/ai-super-pacs-trying-to-influence-midterms/",
-      "imageUrl": "https://media.wired.com/photos/692f741352fbb4b6e88b7f25/191:100/w_1280,c_limit/Pol_Midterms_GettyImages-1483069362.jpg"
+      "url": "https://www.foxnews.com/entertainment/spencer-pratt-reveals-a-list-stars-secretly-support-la-leadership-criticism-stay-silent",
+      "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/01/spencer-pratt-los-angeles-mayoral-candidate-fox-news.jpg"
     },
     {
       "id": 2,
-      "headline": "Iran protests: hundreds feared dead",
-      "description": "Hospital staff in Iran say they are overwhelmed with dead or injured patients",
-      "mainLocation": {
-        "name": "TEHRAN, IRAN",
-        "lat": 35.6892523,
-        "lng": 51.3896004
-      },
-      "intensity": 97,
+      "headline": "Kevin Smith details ‘Dogma’ rights battle with Weinstein as he gears up for sequel nearly 30 years later",
+      "description": "Kevin Smith plans a 'Dogma' sequel after a 30-year rights battle with Weinstein.",
+      "mainLocation": null,
+      "intensity": 65,
       "color": "#ff6b35",
-      "url": "https://www.bbc.co.uk/sounds/play/p0mtc2kn",
-      "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0mtc2l9.jpg"
+      "url": "https://www.foxnews.com/media/kevin-smith-details-dogma-rights-battle-weinstein-he-gears-up-sequel-nearly-30-years-later",
+      "imageUrl": "https://static.foxnews.com/foxnews.com/content/uploads/2026/01/harvey-weinstein-kevin-smith-dogma-rights-split.jpg"
     },
     {
       "id": 3,
-      "headline": "China's AI push is about spreading economic gains, not enriching tech giants, a finance CEO says",
-      "description": "Hisham Alrayes, CEO of GFH Financial Group, said China is prioritizing open models to spread AI's ga...",
-      "mainLocation": {
-        "name": "BEIJING, CHINA",
-        "lat": 40.190632,
-        "lng": 116.412144
-      },
-      "intensity": 95,
+      "headline": "I thought voice typing on Mac was broken — until I tried Wispr Flow [Awesome Apps]",
+      "description": "AI-powered Wispr Flow transforms Mac writing with dictation and smart commands.",
+      "mainLocation": null,
+      "intensity": 98,
       "color": "#ffb800",
-      "url": "https://www.businessinsider.com/china-open-source-model-ai-gains-across-economy-finance-ceo-2026-1",
-      "imageUrl": "https://i.insider.com/697107d6d3c7faef0ecca92e?width=1200&format=jpeg"
+      "url": "https://www.cultofmac.com/reviews/wispr-flow-mac-speech-to-text-app-review",
+      "imageUrl": "https://www.cultofmac.com/wp-content/uploads/2026/01/wispr-flow-featured.jpeg.webp"
     },
     {
       "id": 4,
-      "headline": "Zoom Is the First Casualty in France’s War on American Big Tech",
-      "description": "Homebrewed video conferencing may not be a moonshot, but you gotta start somewhere.",
-      "mainLocation": {
-        "name": "PARIS, FRANCE",
-        "lat": 48.8588897,
-        "lng": 2.320041
-      },
-      "intensity": 78,
+      "headline": "A blueprint for pediatric residency training reform",
+      "description": "Reforms propose shorter, less comprehensive medical training, raising concerns about preparedness.",
+      "mainLocation": null,
+      "intensity": 66,
       "color": "#34c759",
-      "url": "https://gizmodo.com/zoom-is-the-first-casualty-in-frances-war-on-american-big-tech-2000714545",
-      "imageUrl": "https://gizmodo.com/app/uploads/2026/01/macron-1200x675.jpg"
+      "url": "https://kevinmd.com/2026/01/a-blueprint-for-pediatric-residency-training-reform.html",
+      "imageUrl": "https://kevinmd.com/wp-content/uploads/Gemini_Generated_Image_y40qm0y40qm0y40q-1024x717.png"
     },
     {
       "id": 5,
-      "headline": "Trump v China: How Oil Is Defining Great Power Politics",
-      "description": "What is this new era of global politics and where it does it leave Europe?",
-      "mainLocation": {
-        "name": "BEIJING, CHINA",
-        "lat": 40.190632,
-        "lng": 116.412144
-      },
+      "headline": "The best communicators do 3 simple things in job interviews—they make you a 'very, very attractive' candidate, says expert",
+      "description": "Communicate skills well in interviews, says expert Charles Duhigg.",
+      "mainLocation": null,
       "intensity": 61,
       "color": "#5ac8fa",
-      "url": "https://www.bbc.co.uk/sounds/play/m002pqpq",
-      "imageUrl": "https://ichef.bbci.co.uk/images/ic/1024x576/p0lgrqgm.jpg"
+      "url": "https://www.cnbc.com/2026/01/31/the-best-communicators-do-these-simple-things-in-job-interviews-says-expert-charles-duhigg.html",
+      "imageUrl": "https://image.cnbcfm.com/api/v1/image/108141778-1746557149815-gettyimages-642501464-pi-1474446.jpeg?v=1769630242&w=1920&h=1080"
     }
   ]
 }

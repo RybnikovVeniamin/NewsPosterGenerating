@@ -1,65 +1,61 @@
 {
   "date": "2026-02-01",
   "displayDate": "FEB 1, 2026",
-  "bottomWord": "GLOBAL",
+  "bottomWord": "FORECAST",
   "stories": [
     {
       "id": 1,
-      "headline": "Jeffrey Epstein Had a ‘Personal Hacker,’ Informant Claims",
-      "description": "Plus: AI agent OpenClaw gives cybersecurity experts the willies, China executes 11 scam compound bos...",
+      "headline": "Canada’s opposition Conservative Party votes to keep leader Poilievre",
+      "description": "Poilievre stays as Conservative leader after overwhelming party vote.",
       "mainLocation": {
-        "name": "BEIJING, CHINA",
-        "lat": 40.190632,
-        "lng": 116.412144
+        "name": "OTTAWA, CANADA",
+        "lat": 45.4208777,
+        "lng": -75.6901106
       },
-      "intensity": 60,
+      "intensity": 40,
       "color": "#ff2d55",
-      "url": "https://www.wired.com/story/security-news-this-week-jeffrey-epstein-had-a-personal-hacker-informant-claims/",
-      "imageUrl": "https://media.wired.com/photos/694af897996cb37f65fe2d98/191:100/w_1280,c_limit/1_New_Epstein_GettyImages-2252159204.jpg"
+      "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/01/31/canada-s-opposition-conservative-party-votes-to-keep-leader-poilievre",
+      "imageUrl": "https://static.internazionale.it/assets/img/internazionale-icon.png"
     },
     {
       "id": 2,
-      "headline": "'I spoke to ChatGPT 8 times a day'",
-      "description": "AI chatbots are being used as 'surrogate friends' by young people who have lost the ability to socialise.",
+      "headline": "GMKtec Launches NucBox K13 Powered By Core Ultra 7 256V; Its First Mini PC To Feautre 5 GbE LAN",
+      "description": "GMKTEC launches NUCBOX K13 with Core Ultra 7, offering powerful and efficient performance.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 40,
       "color": "#ff6b35",
-      "url": "https://www.bbc.com/news/articles/cg4ewrw2drpo",
-      "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/0d72/live/38ec35b0-fd0a-11f0-833e-6bf0186607ca.jpg"
+      "url": "https://wccftech.com/gmktec-launches-nucbox-k13-powered-by-core-ultra-7-256v-its-first-mini-pc-to-feautre-5-gbe-lan/",
+      "imageUrl": "https://cdn.wccftech.com/wp-content/uploads/2026/01/NucBox-K13-featured.jpg"
     },
     {
       "id": 3,
-      "headline": "xAI Wants to Hire Award-Winning Writers to Train Elon Musk’s Stupid AI Chatbot",
-      "description": "How many award-winning writers are desperate enough to train Grok?",
+      "headline": "What AI Predicts About the Future of the Stock Market — and Your Wallet",
+      "description": "AI predicts market trends and impacts on your finances.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 45,
       "color": "#ffb800",
-      "url": "https://gizmodo.com/xai-wants-to-hire-award-winning-writers-to-train-elon-musks-stupid-ai-chatbot-2000716233",
-      "imageUrl": "https://gizmodo.com/app/uploads/2025/11/grok-1200x675.jpg"
+      "url": "https://consent.yahoo.com/v2/collectConsent?sessionId=1_cc-session_cdb89efb-2cc7-4323-87f4-247f5d36f095",
+      "imageUrl": null
     },
     {
       "id": 4,
-      "headline": "A nice upgrade for Apple’s simplest gadget",
-      "description": "Hi, friends! Welcome to Installer No. 114, your guide to the best and Verge-iest stuff in the world....",
-      "mainLocation": {
-        "name": "CUPERTINO, USA",
-        "lat": 37.3228934,
-        "lng": -122.0322895
-      },
-      "intensity": 60,
+      "headline": "Here’s why traders say $10K Ethereum price is still on the table: Forecasts predict Digitap ($TAP) to outperform as best crypto presale",
+      "description": "Ethereum’s inability to hold the $3,000 level isn’t a concern for long-term traders and investors. […]",
+      "mainLocation": null,
+      "intensity": 45,
       "color": "#34c759",
-      "url": "https://www.theverge.com/tech/871493/apple-airtags-yahoo-scout-wonder-man-installer",
-      "imageUrl": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/01/Installer-114.png?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
+      "url": "https://ambcrypto.com/heres-why-traders-say-10k-ethereum-price-is-still-on-the-table-forecasts-predict-digitap-tap-to-outperform-as-best-crypto-presale/",
+      "imageUrl": "https://ambcrypto.com/wp-content/uploads/2026/01/Screenshot-2026-01-31-161624.png"
     },
     {
       "id": 5,
-      "headline": "You can watch a 'Video Overview' of your NotebookLM research on Android now, and more",
-      "description": "NotebookLM is bringing more AI-generated magic to help users study and learn on Android with videos.",
+      "headline": "Synergy between human expertise and advanced tech can foster more transparency: CAG",
+      "description": "Tech + humans boost auditing transparency, says CAG.",
       "mainLocation": null,
-      "intensity": 60,
+      "intensity": 45,
       "color": "#5ac8fa",
-      "url": "https://www.androidcentral.com/apps-software/ai/you-can-watch-a-video-overview-of-your-notebooklm-research-on-android-now-and-more",
-      "imageUrl": "https://cdn.mos.cms.futurecdn.net/FnBoP3fWh9CL34MmRodxki-2560-80.jpg"
+      "url": "https://economictimes.indiatimes.com/industry/services/consultancy-/-audit/synergy-between-human-expertise-and-advanced-tech-can-foster-more-transparency-cag/articleshow/127822545.cms",
+      "imageUrl": "https://img.etimg.com/thumb/msid-127822569,width-1200,height-630,imgsize-120818,overlay-economictimes/articleshow.jpg"
     }
   ]
 }

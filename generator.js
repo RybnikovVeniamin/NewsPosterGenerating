@@ -199,7 +199,7 @@ async function generateDailyData() {
         const fromIso = fromDate.toISOString().split('T')[0];
         
         const query = 'geopolitics OR "world events" OR "international relations" OR "global economy" OR "major crisis" OR "scientific breakthrough" OR AI';
-        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&from=${fromIso}&language=en&sortBy=relevancy&pageSize=40&apiKey=${NEWS_API_KEY}`;
+        const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&from=${fromIso}&language=en&sortBy=publishedAt&pageSize=100&apiKey=${NEWS_API_KEY}`;
         
         const response = await fetch(url);
         const data = await response.json();

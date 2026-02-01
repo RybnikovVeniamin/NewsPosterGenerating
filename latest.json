@@ -6,13 +6,13 @@
     {
       "id": 1,
       "headline": "Canada’s opposition Conservative Party votes to keep leader Poilievre",
-      "description": "Poilievre stays as Conservative leader after overwhelming party vote.",
+      "description": "Conservatives overwhelmingly retain Pierre Poilievre as their leader.",
       "mainLocation": {
         "name": "OTTAWA, CANADA",
         "lat": 45.4208777,
         "lng": -75.6901106
       },
-      "intensity": 40,
+      "intensity": 45,
       "color": "#ff2d55",
       "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/01/31/canada-s-opposition-conservative-party-votes-to-keep-leader-poilievre",
       "imageUrl": "https://static.internazionale.it/assets/img/internazionale-icon.png"
@@ -20,7 +20,7 @@
     {
       "id": 2,
       "headline": "GMKtec Launches NucBox K13 Powered By Core Ultra 7 256V; Its First Mini PC To Feautre 5 GbE LAN",
-      "description": "GMKTEC launches NUCBOX K13 with Core Ultra 7, offering powerful and efficient performance.",
+      "description": "GMKTEC launches the NUCBOX K13 mini PC for AI and everyday tasks.",
       "mainLocation": null,
       "intensity": 40,
       "color": "#ff6b35",
@@ -30,7 +30,7 @@
     {
       "id": 3,
       "headline": "What AI Predicts About the Future of the Stock Market — and Your Wallet",
-      "description": "AI predicts market trends and impacts on your finances.",
+      "description": "AI predicts impacts on the market and your finances.",
       "mainLocation": null,
       "intensity": 45,
       "color": "#ffb800",
@@ -50,7 +50,7 @@
     {
       "id": 5,
       "headline": "Synergy between human expertise and advanced tech can foster more transparency: CAG",
-      "description": "Tech + humans boost auditing transparency, says CAG.",
+      "description": "Tech and human expertise can boost auditing efficiency and transparency.",
       "mainLocation": null,
       "intensity": 45,
       "color": "#5ac8fa",

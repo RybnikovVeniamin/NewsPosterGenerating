@@ -357,34 +357,26 @@ function applyAdaptiveTextColor() {
 }
 
 function drawHeatmap() {
-    const centerY = height * 0.45;
-    
-    // Используем тот же seed, что и в drawMarkers, чтобы пятна совпадали с точками
+    // Используем seed на основе даты, чтобы позиции были стабильны в течение дня
     let dateSeed = day() + month() * 31 + year() * 365;
     randomSeed(dateSeed);
     
-    // Сначала рассчитываем позиции, как в drawMarkers
+    // Рассчитываем позиции кругов — случайно по всему постеру
     const storyPositions = [];
+    const padding = 100; // Отступ от краёв, чтобы круги не обрезались
+    
     for (let i = 0; i < Math.min(topStories.length, 3); i++) {
-        let rx = width * (0.2 + random(0.6));
-        let ry;
-        if (headerBounds.length >= 3) {
-            if (i === 0) ry = random(headerBounds[0].top - 60, headerBounds[0].top - 30);
-            else if (i === 1) ry = random(headerBounds[0].bottom + 20, headerBounds[1].top - 20);
-            else ry = random(headerBounds[1].bottom + 20, headerBounds[2].top - 20);
-        } else {
-            ry = centerY + (i - 1) * 120 + random(-10, 10);
-            if (i === 1) ry -= 40;
-        }
+        let rx = padding + random(width - padding * 2);
+        let ry = padding + random(height - padding * 2);
         storyPositions.push({ x: rx, y: ry });
     }
+    
+    // Сохраняем позиции глобально для использования в drawMarkers
+    window.circlePositions = storyPositions;
 
     for (let i = 0; i < Math.min(topStories.length, 3); i++) {
         const story = topStories[i];
         const pos = storyPositions[i];
-        
-        // Раньше здесь была проверка if (!story.mainLocation) continue;
-        // Теперь рисуем градиент ВСЕГДА, так как он создает атмосферу макета
         
         const maxRadius = map(story.intensity, 40, 100, 200, 500);
         
@@ -407,39 +399,10 @@ function drawHeatmap() {
 }
 
 function drawMarkers() {
-    const centerY = height * 0.45;
+    // Используем позиции из drawHeatmap (они уже рассчитаны)
+    const storyPositions = window.circlePositions || [];
     
-    // Генерируем случайные X для каждой истории, чтобы каждый день было по-разному
-    // Используем seed на основе даты, чтобы в течение дня X был одинаковым, но разным между днями
-    let dateSeed = day() + month() * 31 + year() * 365;
-    randomSeed(dateSeed);
-
-    const storyPositions = [];
-    for (let i = 0; i < Math.min(topStories.length, 3); i++) {
-        // Случайный X в пределах 20% - 80% ширины
-        let rx = width * (0.2 + random(0.6));
-        
-        // Логика поиска безопасного Y между строками текста
-        let ry;
-        if (headerBounds.length >= 3) {
-            if (i === 0) {
-                // ПЕРВАЯ ТОЧКА: выше первого заголовка
-                ry = random(headerBounds[0].top - 60, headerBounds[0].top - 30);
-            } else if (i === 1) {
-                // ВТОРАЯ ТОЧКА: между первым и вторым заголовком
-                ry = random(headerBounds[0].bottom + 20, headerBounds[1].top - 20);
-            } else {
-                // ТРЕТЬЯ ТОЧКА: между вторым и третьим заголовком
-                ry = random(headerBounds[1].bottom + 20, headerBounds[2].top - 20);
-            }
-        } else {
-            // Запасной вариант, если границы не определились
-            ry = centerY + (i - 1) * 120 + random(-10, 10);
-            if (i === 1) ry -= 40;
-        }
-        
-        storyPositions.push({ x: rx, y: ry });
-    }
+    if (storyPositions.length === 0) return;
     
     // Рисуем цепочку линий между точками (1 -> 2 -> 3)
     stroke(255, 30);
@@ -476,103 +439,59 @@ function drawStoryMarker(x, y, story, index) {
     noFill();
     
     textFont('PP Supply Mono');
-    textSize(10); // Устанавливаем базовый размер
+    textSize(10);
     
     let lineLen = 30;
-    let labelOffset = 5;
-    let textH = 25; // Примерная высота блока текста
     
-    if (index === 0) {
-        // ВЕРХНЯЯ ТОЧКА: линия идет вверх
-        let lineTopY = y - lineLen;
-        
-        // Проверяем столкновения с любыми текстовыми блоками
-        for (let bound of headerBounds) {
-            // Если текст находится над точкой и по горизонтали пересекается
-            if (x > bound.left - 40 && x < bound.right + 40) {
-                // Если линия или текст подписи заходят на блок
-                if (lineTopY - textH < bound.bottom + 10 && y > bound.top) {
-                    // Пробуем инвертировать направление линии вниз, если там свободно
-                    lineTopY = y + lineLen; 
-                }
-            }
-        }
-        
-        line(x, y, x, lineTopY);
-        
-        noStroke();
-        fill(255, 200);
-        textSize(10); // Явно задаем размер перед выводом названия города
-        if (lineTopY < y) {
-            textAlign(CENTER, BOTTOM);
-            text(cityName, x, lineTopY - 15);
-            fill(255, 100);
-            textSize(8); // Координаты чуть меньше
-            text(coords, x, lineTopY - 5);
-        } else {
-            textAlign(CENTER, TOP);
-            text(cityName, x, lineTopY + 5);
-            fill(255, 100);
-            textSize(8); // Координаты чуть меньше
-            text(coords, x, lineTopY + 17);
-        }
-        
-    } else if (index === 1) {
-        // СРЕДНЯЯ ТОЧКА: линия идет вбок
+    // Определяем направление линии в зависимости от позиции на постере
+    // Если точка в верхней половине — линия идёт вниз, иначе вверх
+    // Если точка слева — линия может идти вправо, и наоборот
+    
+    let lineEndX = x;
+    let lineEndY;
+    let textAlignH = CENTER;
+    let textAlignV;
+    
+    if (y < height * 0.4) {
+        // Верхняя часть постера — линия вниз
+        lineEndY = y + lineLen;
+        textAlignV = TOP;
+    } else if (y > height * 0.6) {
+        // Нижняя часть постера — линия вверх
+        lineEndY = y - lineLen;
+        textAlignV = BOTTOM;
+    } else {
+        // Середина — линия вбок
         let sideDir = x > width / 2 ? -1 : 1;
-        let endX = x + sideDir * 60;
-        let endY = y - 20;
-        
-        // Проверка столкновений для боковой линии
-        for (let bound of headerBounds) {
-            if (endY < bound.bottom + 10 && endY > bound.top - 10) {
-                if ((sideDir === 1 && endX + 50 > bound.left) || (sideDir === -1 && endX - 50 < bound.right)) {
-                    // Если мешает, пробуем направить в другую сторону или изменить наклон
-                    endY = y + 20;
-                }
-            }
-        }
-        
-        line(x, y, endX, endY);
-        
-        noStroke();
-        fill(255, 200);
-        textAlign(sideDir === 1 ? LEFT : RIGHT, CENTER);
-        textSize(10);
-        text(cityName, endX + sideDir * 10, endY - 5);
+        lineEndX = x + sideDir * 50;
+        lineEndY = y;
+        textAlignH = sideDir === 1 ? LEFT : RIGHT;
+        textAlignV = CENTER;
+    }
+    
+    line(x, y, lineEndX, lineEndY);
+    
+    noStroke();
+    fill(255, 200);
+    textAlign(textAlignH, textAlignV);
+    
+    if (textAlignV === TOP) {
+        text(cityName, lineEndX, lineEndY + 5);
         fill(255, 100);
         textSize(8);
-        text(coords, endX + sideDir * 10, endY + 7);
-        
-    } else if (index === 2) {
-        // НИЖНЯЯ ТОЧКА: линия идет вниз
-        let lineBottomY = y + lineLen;
-        
-        for (let bound of headerBounds) {
-            if (x > bound.left - 40 && x < bound.right + 40) {
-                if (lineBottomY + textH > bound.top - 10 && y < bound.bottom) {
-                    lineBottomY = y - lineLen;
-                }
-            }
-        }
-        
-        line(x, y, x, lineBottomY);
-        
-        noStroke();
-        fill(255, 200);
-        if (lineBottomY > y) {
-            textAlign(CENTER, TOP);
-            text(cityName, x, lineBottomY + 5);
-            fill(255, 100);
-            textSize(8);
-            text(coords, x, lineBottomY + 17);
-        } else {
-            textAlign(CENTER, BOTTOM);
-            text(cityName, x, lineBottomY - 15);
-            fill(255, 100);
-            textSize(8);
-            text(coords, x, lineBottomY - 5);
-        }
+        text(coords, lineEndX, lineEndY + 17);
+    } else if (textAlignV === BOTTOM) {
+        text(cityName, lineEndX, lineEndY - 15);
+        fill(255, 100);
+        textSize(8);
+        text(coords, lineEndX, lineEndY - 5);
+    } else {
+        // CENTER (боковая линия)
+        let offset = lineEndX > x ? 10 : -10;
+        text(cityName, lineEndX + offset, lineEndY - 5);
+        fill(255, 100);
+        textSize(8);
+        text(coords, lineEndX + offset, lineEndY + 7);
     }
 }
 

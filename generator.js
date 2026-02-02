@@ -47,11 +47,25 @@ const countryKeywords = {
 async function analyzeLocationWithAI(title, description) {
     try {
         const prompt = `Analyze this news headline and description. Determine the most relevant geographic location (city and country) where the event is happening or where the main organization is based. 
-        IMPORTANT: Focus on serious global news. If the news is about celebrity gossip, entertainment, or trivial social media trends, return "Skip".
         
-        Example: "OpenAI releases new model" -> San Francisco, USA.
-        Example: "EU imposes new sanctions" -> Brussels, Belgium.
-        Example: "Spencer Pratt says..." -> Skip.
+        PRIORITY NEWS (keep these):
+        - Politics, government, elections, diplomacy
+        - International relations, conflicts, peace agreements
+        - Major economic policy, trade deals
+        - Climate policy, environmental disasters
+        - Major tech policy and regulation
+        
+        SKIP these types of news:
+        - Celebrity gossip, entertainment, movies, music
+        - Sports results and athlete news
+        - Local crime, car accidents, local weather
+        - Product reviews, deals, "how to" articles
+        - Social media trends, viral content
+        
+        Example: "EU imposes new sanctions on Russia" -> Brussels, Belgium.
+        Example: "Prime Minister announces new climate policy" -> [capital of that country].
+        Example: "Boxing results: Fighter wins title" -> Skip.
+        Example: "Highway pileup causes traffic" -> Skip.
         
         News Title: "${title}"
         Description: "${description}"
@@ -198,9 +212,10 @@ async function generateDailyData() {
         fromDate.setDate(today.getDate() - 1);
         const fromIso = fromDate.toISOString().split('T')[0];
         
-        // Переключаемся на top-headlines для получения самых важных мировых новостей
-        // Используем категорию 'general' для широкого охвата мировых событий
-        const url = `https://newsapi.org/v2/top-headlines?category=general&language=en&pageSize=40&apiKey=${NEWS_API_KEY}`;
+        // Используем международные источники для глобального охвата
+        // BBC (UK), Reuters (международный), Al Jazeera (Ближний Восток), Associated Press (международный)
+        const internationalSources = 'bbc-news,reuters,al-jazeera-english,associated-press';
+        const url = `https://newsapi.org/v2/top-headlines?sources=${internationalSources}&pageSize=50&apiKey=${NEWS_API_KEY}`;
         
         const response = await fetch(url);
         const data = await response.json();
@@ -217,6 +232,8 @@ async function generateDailyData() {
 
             const topStories = [];
             const processedArticles = filteredArticles;
+            const countryCount = {}; // Счётчик новостей по странам
+            const MAX_PER_COUNTRY = 1; // Максимум 1 новость из одной страны
 
             for (let i = 0; i < processedArticles.length; i++) {
                 if (topStories.length >= 5) break; // Нам нужно только 5 лучших новостей
@@ -280,7 +297,21 @@ async function generateDailyData() {
                     console.log(`❌ Локация не определена. Точка на карте не будет показана.`);
                 }
                 
-                // 5. Оцениваем интенсивность через ИИ
+                // 5. Проверяем лимит по странам (максимум 1 новость из одной страны)
+                if (city && city.name) {
+                    // Извлекаем страну из названия локации (формат: "CITY, COUNTRY")
+                    const parts = city.name.split(',');
+                    const country = parts.length > 1 ? parts[parts.length - 1].trim() : city.name;
+                    
+                    if (countryCount[country] >= MAX_PER_COUNTRY) {
+                        console.log(`⏭️ Пропускаем — уже есть ${MAX_PER_COUNTRY} новость из ${country}`);
+                        continue;
+                    }
+                    countryCount[country] = (countryCount[country] || 0) + 1;
+                    console.log(`🌍 Страна: ${country} (новостей из этой страны: ${countryCount[country]})`);
+                }
+                
+                // 6. Оцениваем интенсивность через ИИ
                 console.log(`📊 ИИ оценивает важность новости...`);
                 const aiIntensity = await analyzeIntensityWithAI(cleanTitle, content);
                 console.log(`📈 Оценка интенсивности: ${aiIntensity}/100`);

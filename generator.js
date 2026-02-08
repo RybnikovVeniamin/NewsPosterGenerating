@@ -3,14 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Ключи API
+// API Keys
 const NEWS_API_KEY = process.env.NEWS_API_KEY || 'e995fc4497af487f887bf84cd5f679e8';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-// Список ключевых слов для поиска локаций в тексте (страны и крупные регионы)
+// List of keywords for finding locations in text (countries and major regions)
 const countryKeywords = {
     'USA': 'Washington DC, USA',
     'UK': 'London, UK',
@@ -42,7 +42,7 @@ const countryKeywords = {
 };
 
 /**
- * Функция для анализа новости через ИИ и определения локации
+ * Function to analyze news via AI and determine location
  */
 async function analyzeLocationWithAI(title, description) {
     try {
@@ -78,13 +78,13 @@ async function analyzeLocationWithAI(title, description) {
         
         return text !== "Global" ? text : null;
     } catch (error) {
-        console.error("⚠️ Ошибка ИИ при анализе локации:", error.message);
+        console.error("⚠️ AI error analyzing location:", error.message);
         return null;
     }
 }
 
 /**
- * Функция для оценки важности новости через ИИ
+ * Function to assess news importance via AI
  */
 async function analyzeIntensityWithAI(title, description) {
     try {
@@ -105,13 +105,13 @@ async function analyzeIntensityWithAI(title, description) {
         
         return isNaN(intensity) ? 60 : Math.min(100, Math.max(40, intensity));
     } catch (error) {
-        console.error("⚠️ Ошибка ИИ при анализе интенсивности:", error.message);
+        console.error("⚠️ AI error analyzing intensity:", error.message);
         return 60;
     }
 }
 
 /**
- * Функция для сокращения заголовка новости через ИИ
+ * Function to shorten news headline via AI
  */
 async function shortenHeadlineWithAI(headline) {
     try {
@@ -126,13 +126,13 @@ async function shortenHeadlineWithAI(headline) {
         const response = await result.response;
         return response.text().trim().toUpperCase();
     } catch (error) {
-        console.error("⚠️ Ошибка ИИ при сокращении заголовка:", error.message);
+        console.error("⚠️ AI error shortening headline:", error.message);
         return headline.substring(0, 60).toUpperCase();
     }
 }
 
 /**
- * Функция для сокращения описания новости через ИИ
+ * Function to shorten news description via AI
  */
 async function shortenDescriptionWithAI(headline, description) {
     try {
@@ -148,18 +148,18 @@ async function shortenDescriptionWithAI(headline, description) {
         const response = await result.response;
         return response.text().trim();
     } catch (error) {
-        console.error("⚠️ Ошибка ИИ при сокращении текста:", error.message);
+        console.error("⚠️ AI error shortening text:", error.message);
         return description.substring(0, 100) + "...";
     }
 }
 
 /**
- * Функция для получения координат по названию места через OpenStreetMap (Nominatim)
+ * Function to get coordinates by place name via OpenStreetMap (Nominatim)
  */
 async function getCoordinates(locationName) {
     if (!locationName) return null;
     try {
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Задержка для Nominatim
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Delay for Nominatim
         
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(locationName)}&format=json&limit=1`;
         const response = await fetch(url, {
@@ -175,13 +175,13 @@ async function getCoordinates(locationName) {
             };
         }
     } catch (error) {
-        console.error(`⚠️ Не удалось найти координаты для: ${locationName}`);
+        console.error(`⚠️ Could not find coordinates for: ${locationName}`);
     }
     return null;
 }
 
 /**
- * Функция для определения главного слова дня через ИИ
+ * Function to determine the main word of the day via AI
  */
 async function analyzeGlobalSentiment(stories) {
     try {
@@ -198,13 +198,13 @@ async function analyzeGlobalSentiment(stories) {
         const response = await result.response;
         return response.text().trim().toUpperCase().replace(/[^A-Z]/g, '');
     } catch (error) {
-        console.error("⚠️ Ошибка ИИ при анализе настроения:", error.message);
+        console.error("⚠️ AI error analyzing sentiment:", error.message);
         return "GLOBAL";
     }
 }
 
 async function generateDailyData() {
-    console.log("📡 Робот запускает сбор новостей с ИИ-анализом...");
+    console.log("📡 Robot starting news collection with AI analysis...");
     
     try {
         const today = new Date();
@@ -212,8 +212,8 @@ async function generateDailyData() {
         fromDate.setDate(today.getDate() - 1);
         const fromIso = fromDate.toISOString().split('T')[0];
         
-        // Используем международные источники для глобального охвата
-        // BBC (UK), Reuters (международный), Al Jazeera (Ближний Восток), Associated Press (международный)
+        // Use international sources for global coverage
+        // BBC (UK), Reuters (international), Al Jazeera (Middle East), Associated Press (international)
         const internationalSources = 'bbc-news,reuters,al-jazeera-english,associated-press';
         const url = `https://newsapi.org/v2/top-headlines?sources=${internationalSources}&pageSize=50&apiKey=${NEWS_API_KEY}`;
         
@@ -232,49 +232,49 @@ async function generateDailyData() {
 
             const topStories = [];
             const processedArticles = filteredArticles;
-            const countryCount = {}; // Счётчик новостей по странам
-            const MAX_PER_COUNTRY = 1; // Максимум 1 новость из одной страны
+            const countryCount = {}; // Counter of news by country
+            const MAX_PER_COUNTRY = 1; // Maximum 1 news story per country
 
             for (let i = 0; i < processedArticles.length; i++) {
-                if (topStories.length >= 5) break; // Нам нужно только 5 лучших новостей
+                if (topStories.length >= 5) break; // We only need top 5 stories
                 const art = processedArticles[i];
                 let cleanTitle = art.title.split(' - ')[0];
                 let content = art.description || art.content || "";
                 
-                console.log(`\n📰 Новость ${i+1}: ${cleanTitle}`);
+                console.log(`\n📰 News ${i+1}: ${cleanTitle}`);
                 
-                // 1. Сокращаем заголовок через ИИ, если он слишком длинный
+                // 1. Shorten headline via AI if too long
                 let finalTitle = cleanTitle;
                 if (cleanTitle.length > 50) {
-                    console.log(`📝 Заголовок слишком длинный (${cleanTitle.length} симв.), сокращаем через ИИ...`);
+                    console.log(`📝 Headline too long (${cleanTitle.length} chars), shortening via AI...`);
                     finalTitle = await shortenHeadlineWithAI(cleanTitle);
                 }
 
-                // 2. Сокращаем текст через ИИ, если он слишком длинный
+                // 2. Shorten text via AI if too long
                 let finalDesc = content;
                 if (content.length > 120) {
-                    console.log(`📝 Текст слишком длинный (${content.length} симв.), сокращаем через ИИ...`);
+                    console.log(`📝 Text too long (${content.length} chars), shortening via AI...`);
                     finalDesc = await shortenDescriptionWithAI(finalTitle, content);
                 }
                 
-                // 3. Спрашиваем ИИ про локацию
-                console.log(`🤖 ИИ анализирует локацию...`);
+                // 3. Ask AI about location
+                console.log(`🤖 AI analyzing location...`);
                 const aiLocation = await analyzeLocationWithAI(finalTitle, content);
                 
                 if (aiLocation === "Skip") {
-                    console.log(`⏭️ ИИ рекомендовал пропустить эту новость (развлекательный контент).`);
+                    console.log(`⏭️ AI recommended skipping this news (entertainment content).`);
                     continue; 
                 }
 
                 let city = null;
                 if (aiLocation) {
-                    console.log(`📍 ИИ определил локацию: ${aiLocation}. Ищем координаты...`);
+                    console.log(`📍 AI identified location: ${aiLocation}. Searching coordinates...`);
                     city = await getCoordinates(aiLocation);
                 }
 
-                // 3. Если ИИ не помог — пробуем поиск по словарю
+                // 3. If AI didn't help — try dictionary search
                 if (!city) {
-                    console.log(`⚠️ ИИ не нашел локацию, пробуем поиск по ключевым словам...`);
+                    console.log(`⚠️ AI didn't find location, trying keyword search...`);
                     let foundKeyword = null;
                     const combinedText = (cleanTitle + " " + content).toUpperCase();
                     
@@ -287,34 +287,34 @@ async function generateDailyData() {
                     }
 
                     if (foundKeyword) {
-                        console.log(`🔍 Найдено совпадение в словаре: ${foundKeyword}. Ищем координаты...`);
+                        console.log(`🔍 Found dictionary match: ${foundKeyword}. Searching coordinates...`);
                         city = await getCoordinates(foundKeyword);
                     }
                 }
 
-                // 4. Если город не определен — просто оставляем null, фейковые данные не используем
+                // 4. If city not defined — just leave null, don't use fake data
                 if (!city) {
-                    console.log(`❌ Локация не определена. Точка на карте не будет показана.`);
+                    console.log(`❌ Location not defined. Point will not be shown on map.`);
                 }
                 
-                // 5. Проверяем лимит по странам (максимум 1 новость из одной страны)
+                // 5. Check country limit (max 1 news per country)
                 if (city && city.name) {
-                    // Извлекаем страну из названия локации (формат: "CITY, COUNTRY")
+                    // Extract country from location name (format: "CITY, COUNTRY")
                     const parts = city.name.split(',');
                     const country = parts.length > 1 ? parts[parts.length - 1].trim() : city.name;
                     
                     if (countryCount[country] >= MAX_PER_COUNTRY) {
-                        console.log(`⏭️ Пропускаем — уже есть ${MAX_PER_COUNTRY} новость из ${country}`);
+                        console.log(`⏭️ Skipping — already have ${MAX_PER_COUNTRY} news from ${country}`);
                         continue;
                     }
                     countryCount[country] = (countryCount[country] || 0) + 1;
-                    console.log(`🌍 Страна: ${country} (новостей из этой страны: ${countryCount[country]})`);
+                    console.log(`🌍 Country: ${country} (news from this country: ${countryCount[country]})`);
                 }
                 
-                // 6. Оцениваем интенсивность через ИИ
-                console.log(`📊 ИИ оценивает важность новости...`);
+                // 6. Assess intensity via AI
+                console.log(`📊 AI assessing news importance...`);
                 const aiIntensity = await analyzeIntensityWithAI(cleanTitle, content);
-                console.log(`📈 Оценка интенсивности: ${aiIntensity}/100`);
+                console.log(`📈 Intensity score: ${aiIntensity}/100`);
 
                 topStories.push({
                     id: i + 1,
@@ -328,10 +328,10 @@ async function generateDailyData() {
                 });
             }
 
-            // Определяем главное слово дня через ИИ
-            console.log(`\n🧠 ИИ анализирует общее настроение дня...`);
+            // Determine main word of day via AI
+            console.log(`\n🧠 AI analyzing overall daily sentiment...`);
             const globalSentiment = await analyzeGlobalSentiment(topStories);
-            console.log(`✨ Главное слово дня: ${globalSentiment}`);
+            console.log(`✨ Main word of the day: ${globalSentiment}`);
 
             const result = {
                 date: new Date().toISOString().split('T')[0],
@@ -348,14 +348,14 @@ async function generateDailyData() {
             const filePath = path.join(archiveDir, `poster-${result.date}.json`);
             fs.writeFileSync(filePath, JSON.stringify(result, null, 2));
             
-            console.log(`\n✅ Все данные успешно сохранены в ${filePath}`);
+            console.log(`\n✅ All data successfully saved to ${filePath}`);
             fs.writeFileSync(path.join(__dirname, 'latest.json'), JSON.stringify(result, null, 2));
             
         } else {
-            console.error("❌ Новости не найдены или ошибка API");
+            console.error("❌ No news found or API error");
         }
     } catch (error) {
-        console.error("❌ Критическая ошибка робота:", error);
+        console.error("❌ Critical robot error:", error);
     }
 }
 

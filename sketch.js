@@ -5,7 +5,7 @@
 let canvas;
 let topStories = [];
 let currentBottomWord = "";
-let headerBounds = []; // Будем хранить границы заголовков
+let headerBounds = []; // We will store header boundaries
 const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 800;
 const NEWS_API_KEY = 'e995fc4497af487f887bf84cd5f679e8';
@@ -23,7 +23,7 @@ async function setup() {
     // 2. Update HTML elements (Titles + Top Text + Bottom Word)
     updateUI();
     
-    // Даем браузеру время отрисовать HTML, чтобы получить размеры заголовков
+    // Give the browser time to render HTML to get header sizes
     setTimeout(() => {
         calculateHeaderBounds();
         drawPoster();
@@ -35,7 +35,7 @@ async function setup() {
 
 function calculateHeaderBounds() {
     headerBounds = [];
-    // Заголовки
+    // Headers
     for (let i = 1; i <= 3; i++) {
         const el = document.getElementById(`title-${i}`);
         if (el && el.innerText.trim() !== "") {
@@ -51,21 +51,21 @@ function calculateHeaderBounds() {
             });
         }
     }
-    // Блоки описания сверху
+    // Top description blocks
     const expBlocks = document.querySelectorAll('.explanation-block');
     expBlocks.forEach((el, i) => {
         const rect = el.getBoundingClientRect();
         const containerRect = document.querySelector('.poster-container').getBoundingClientRect();
         headerBounds.push({
             type: 'exp',
-            id: i, // Добавляем ID для точной идентификации
+            id: i, // Add ID for precise identification
             top: rect.top - containerRect.top,
             bottom: rect.bottom - containerRect.top,
             left: rect.left - containerRect.left,
             right: rect.right - containerRect.left
         });
     });
-    // Большое слово внизу
+    // Large word at the bottom
     const bottomWord = document.getElementById('bottom-word');
     if (bottomWord) {
         const rect = bottomWord.getBoundingClientRect();
@@ -81,7 +81,7 @@ function calculateHeaderBounds() {
 }
 
 async function fetchLatestData() {
-    console.log("📡 Загрузка последних данных из latest.json...");
+    console.log("📡 Loading latest data from latest.json...");
     try {
         const response = await fetch('latest.json');
         const data = await response.json();
@@ -89,10 +89,10 @@ async function fetchLatestData() {
         if (data && data.stories) {
             topStories = data.stories;
             currentBottomWord = data.bottomWord || "";
-            console.log("✅ Данные загружены:", topStories, "Слово дня:", currentBottomWord);
+            console.log("✅ Data loaded:", topStories, "Word of the day:", currentBottomWord);
         }
     } catch (e) {
-        console.error("❌ Ошибка загрузки latest.json, пробуем NewsAPI:", e);
+        console.error("❌ Error loading latest.json, trying NewsAPI:", e);
         await fetchRealData();
     }
 }
@@ -105,11 +105,11 @@ function exportPosterData() {
         stories: topStories
     };
     
-    console.log("💾 Данные для сайта подготовлены:", dataToExport);
+    console.log("💾 Data prepared for website:", dataToExport);
 }
 
 async function fetchRealData() {
-    console.log("📡 Запрос самых важных мировых новостей...");
+    console.log("📡 Requesting top world news...");
     try {
         const query = 'war OR election OR economy OR crisis OR "breaking news" OR politics';
         const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&sortBy=relevancy&pageSize=15&apiKey=${NEWS_API_KEY}`;
@@ -192,12 +192,12 @@ async function fetchRealData() {
             });
         }
     } catch (e) {
-        console.error("❌ Ошибка:", e);
+        console.error("❌ Error:", e);
         topStories = TRENDING_STORIES.slice(0, 3);
     }
 }
 
-// Вспомогательная функция для перемешивания массива (Fisher-Yates shuffle)
+// Helper function to shuffle array (Fisher-Yates shuffle)
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
@@ -208,11 +208,11 @@ function shuffle(array) {
     return array;
 }
 
-// Функция для выбора ключевого слова на основе настроения новостей
+// Function to select keyword based on news sentiment
 function getSentimentWord(stories) {
     const text = stories.map(s => (s.headline + " " + s.description).toUpperCase()).join(" ");
     
-    // Словари для анализа
+    // Dictionaries for analysis
     const tensionWords = ["WAR", "CONFLICT", "CRISIS", "DEAD", "ATTACK", "PROTEST", "TENSION", "FIGHT"];
     const powerWords = ["ELECTION", "TRUMP", "BIDEN", "GOVERNMENT", "POLICY", "POWER", "LEADER"];
     const economyWords = ["ECONOMY", "MARKET", "FINANCIAL", "PRICE", "BANK", "TRADE", "OIL"];
@@ -221,23 +221,23 @@ function getSentimentWord(stories) {
     let scores = {
         TENSION: 0,
         POWER: 0,
-        VOLUME: 0, // По умолчанию
+        VOLUME: 0, // Default
         IMPACT: 0,
         VOICE: 0
     };
 
-    // Подсчет очков
+    // Scoring
     tensionWords.forEach(w => { if (text.includes(w)) scores.TENSION += 2; });
     powerWords.forEach(w => { if (text.includes(w)) scores.POWER += 1.5; });
     economyWords.forEach(w => { if (text.includes(w)) scores.IMPACT += 1.2; });
     techWords.forEach(w => { if (text.includes(w)) scores.VOICE += 1; });
 
-    // Добавляем немного случайности к базовым словам
+    // Add some randomness to base words
     scores.VOLUME += Math.random();
     scores.IMPACT += Math.random();
     scores.VOICE += Math.random();
 
-    // Находим слово с максимальным баллом
+    // Find word with maximum score
     let maxScore = -1;
     let selectedWord = "GLOBAL";
 
@@ -277,11 +277,11 @@ function updateUI() {
     dateEl.style.fontSize = '10px';
     document.querySelector('.poster-container').appendChild(dateEl);
     
-    // ОБНОВЛЕННАЯ ЛОГИКА: Сначала проверяем, есть ли слово от ИИ в данных
+    // UPDATED LOGIC: First check if there is an AI word in the data
     const bottomWordEl = document.getElementById('bottom-word');
     if (bottomWordEl) {
-        // Если мы загрузили данные из latest.json и там есть bottomWord, используем его
-        // В противном случае рассчитываем по старинке (как запасной вариант)
+        // If we loaded data from latest.json and it has bottomWord, use it
+        // Otherwise calculate the old way (as a fallback)
         if (typeof currentBottomWord !== 'undefined' && currentBottomWord) {
             bottomWordEl.innerText = currentBottomWord;
         } else if (topStories.length > 0) {
@@ -299,20 +299,37 @@ function drawPoster() {
     drawHeatmap();
     drawMarkers();
     
-    // После отрисовки всего на канвасе, проверяем яркость под текстом
+    // Add grainy noise effect
+    addGrain(15); // You can adjust this number (strength)
+    
+    // After drawing everything on canvas, check brightness under text
     applyAdaptiveTextColor();
+}
+
+function addGrain(strength) {
+    loadPixels();
+    for (let i = 0; i < pixels.length; i += 4) {
+        // Generate random noise
+        let noiseVal = random(-strength, strength);
+        
+        // Apply to R, G, B channels
+        pixels[i] = constrain(pixels[i] + noiseVal, 0, 255);
+        pixels[i+1] = constrain(pixels[i+1] + noiseVal, 0, 255);
+        pixels[i+2] = constrain(pixels[i+2] + noiseVal, 0, 255);
+    }
+    updatePixels();
 }
 
 function applyAdaptiveTextColor() {
     loadPixels();
     
-    // Проходим по всем зарегистрированным текстовым блокам
+    // Iterate through all registered text blocks
     headerBounds.forEach((bound, index) => {
         let totalBrightness = 0;
         let count = 0;
         
-        // Вычисляем среднюю яркость фона под этим блоком
-        // Берем несколько точек внутри прямоугольника для скорости
+        // Calculate average background brightness under this block
+        // Take a few points inside the rectangle for speed
         for (let x = Math.floor(bound.left); x < bound.right; x += 10) {
             for (let y = Math.floor(bound.top); y < bound.bottom; y += 10) {
                 let pixIndex = 4 * (Math.floor(y * pixelDensity()) * width * pixelDensity() + Math.floor(x * pixelDensity()));
@@ -328,21 +345,21 @@ function applyAdaptiveTextColor() {
         
         let avgBrightness = count > 0 ? totalBrightness / count : 0;
         
-        // Если фон яркий (больше 100 из 255), делаем текст темнее или контрастнее
-        // В нашем случае, если фон яркий, текст должен быть белым (макс контраст), 
-        // а если фон темный, он и так белый. 
-        // Но пользователь просил "белый/серый в зависимости от контраста".
+        // If background is bright (over 100 of 255), make text darker or more contrasting
+        // In our case, if background is bright, text should be white (max contrast), 
+        // and if background is dark, it is already white. 
+        // But user asked for "white/gray depending on contrast".
         
-        let targetColor = '#e8e9eb'; // По умолчанию (светло-серый)
+        let targetColor = '#e8e9eb'; // Default (light gray)
         if (avgBrightness > 120) {
-            targetColor = '#ffffff'; // На ярком фоне делаем чисто белым для четкости
+            targetColor = '#ffffff'; // On bright background make pure white for clarity
         } else if (avgBrightness > 50) {
-            targetColor = '#ffffff'; // Тоже белый
+            targetColor = '#ffffff'; // Also white
         } else {
-            targetColor = '#e8e9eb'; // На темном фоне оставляем приглушенным
+            targetColor = '#e8e9eb'; // On dark background keep muted
         }
 
-        // Применяем цвет к HTML элементу
+        // Apply color to HTML element
         if (bound.type === 'title') {
             const el = document.getElementById(`title-${index + 1}`);
             if (el) el.style.color = targetColor;
@@ -357,13 +374,13 @@ function applyAdaptiveTextColor() {
 }
 
 function drawHeatmap() {
-    // Используем seed на основе даты, чтобы позиции были стабильны в течение дня
+    // Use date-based seed so positions are stable throughout the day
     let dateSeed = day() + month() * 31 + year() * 365;
     randomSeed(dateSeed);
     
-    // Рассчитываем позиции кругов — случайно по всему постеру
+    // Calculate circle positions — randomly across the poster
     const storyPositions = [];
-    const padding = 100; // Отступ от краёв, чтобы круги не обрезались
+    const padding = 100; // Padding from edges so circles aren't cut off
     
     for (let i = 0; i < Math.min(topStories.length, 3); i++) {
         let rx = padding + random(width - padding * 2);
@@ -371,7 +388,7 @@ function drawHeatmap() {
         storyPositions.push({ x: rx, y: ry });
     }
     
-    // Сохраняем позиции глобально для использования в drawMarkers
+    // Save positions globally for use in drawMarkers
     window.circlePositions = storyPositions;
 
     for (let i = 0; i < Math.min(topStories.length, 3); i++) {
@@ -390,7 +407,7 @@ function drawHeatmap() {
             ellipse(pos.x, pos.y, r + noiseVal);
         }
 
-        // Белую точку в центре рисуем только если есть реальная локация
+        // Draw white dot in center only if there is a real location
         if (story.mainLocation) {
             fill(255, 180);
             ellipse(pos.x, pos.y, 8);
@@ -399,12 +416,12 @@ function drawHeatmap() {
 }
 
 function drawMarkers() {
-    // Используем позиции из drawHeatmap (они уже рассчитаны)
+    // Use positions from drawHeatmap (they are already calculated)
     const storyPositions = window.circlePositions || [];
     
     if (storyPositions.length === 0) return;
     
-    // Рисуем цепочку линий между точками (1 -> 2 -> 3)
+    // Draw chain of lines between points (1 -> 2 -> 3)
     stroke(255, 30);
     strokeWeight(1);
     noFill();
@@ -418,11 +435,11 @@ function drawMarkers() {
         const story = topStories[i];
         const pos = storyPositions[i];
         
-        // Подписи (город и координаты) рисуем только если есть локация
+        // Labels (city and coordinates) are drawn only if there is a location
         if (story.mainLocation) {
             drawStoryMarker(pos.x, pos.y, story, i);
 
-            // Основная точка
+            // Main point
             fill(255, 200);
             noStroke();
             ellipse(pos.x, pos.y, 6);
@@ -443,9 +460,9 @@ function drawStoryMarker(x, y, story, index) {
     
     let lineLen = 30;
     
-    // Определяем направление линии в зависимости от позиции на постере
-    // Если точка в верхней половине — линия идёт вниз, иначе вверх
-    // Если точка слева — линия может идти вправо, и наоборот
+    // Determine line direction depending on position on poster
+    // If point is in upper half — line goes down, otherwise up
+    // If point is on left — line can go right, and vice versa
     
     let lineEndX = x;
     let lineEndY;
@@ -453,15 +470,15 @@ function drawStoryMarker(x, y, story, index) {
     let textAlignV;
     
     if (y < height * 0.4) {
-        // Верхняя часть постера — линия вниз
+        // Upper part of poster — line down
         lineEndY = y + lineLen;
         textAlignV = TOP;
     } else if (y > height * 0.6) {
-        // Нижняя часть постера — линия вверх
+        // Lower part of poster — line up
         lineEndY = y - lineLen;
         textAlignV = BOTTOM;
     } else {
-        // Середина — линия вбок
+        // Middle — line sideways
         let sideDir = x > width / 2 ? -1 : 1;
         lineEndX = x + sideDir * 50;
         lineEndY = y;
@@ -486,7 +503,7 @@ function drawStoryMarker(x, y, story, index) {
         textSize(8);
         text(coords, lineEndX, lineEndY - 5);
     } else {
-        // CENTER (боковая линия)
+        // CENTER (side line)
         let offset = lineEndX > x ? 10 : -10;
         text(cityName, lineEndX + offset, lineEndY - 5);
         fill(255, 100);
@@ -496,14 +513,14 @@ function drawStoryMarker(x, y, story, index) {
 }
 
 function drawDashedCurve(x1, y1, x2, y2) {
-    let steps = 30; // Увеличили количество шагов для плавности
+    let steps = 30; // Increased number of steps for smoothness
     
-    // Генерируем случайное смещение для "контрольной точки" кривой
-    // Это создаст уникальный изгиб для каждой линии
+    // Generate random offset for curve "control point"
+    // This will create a unique curve for each line
     let midX = lerp(x1, x2, 0.5);
     let midY = lerp(y1, y2, 0.5);
     
-    // Добавляем случайный "вылет" в сторону
+    // Add random "flyout" to the side
     let offsetX = random(-50, 50);
     let offsetY = random(-30, 30);
     
@@ -514,7 +531,7 @@ function drawDashedCurve(x1, y1, x2, y2) {
         let t1 = i / steps;
         let t2 = (i + 1) / steps;
         
-        // Используем квадратичную кривую Безье для плавного изгиба
+        // Use quadratic Bezier curve for smooth bend
         let cx1 = (1 - t1) * (1 - t1) * x1 + 2 * (1 - t1) * t1 * cpX + t1 * t1 * x2;
         let cy1 = (1 - t1) * (1 - t1) * y1 + 2 * (1 - t1) * t1 * cpY + t1 * t1 * y2;
         

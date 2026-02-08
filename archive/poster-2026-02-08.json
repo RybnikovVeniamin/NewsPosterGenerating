@@ -1,61 +1,77 @@
 {
   "date": "2026-02-08",
   "displayDate": "FEB 8, 2026",
-  "bottomWord": "GLOBAL",
+  "bottomWord": "DISTURBANCE",
   "stories": [
     {
       "id": 1,
-      "headline": "Carrick extends winning run as Man United beat 10-man Tottenham 2-0",
-      "description": "Bryan Mbeumo and Bruno Fernandes score for United while Spurs captain Christian Romero sees red for a wild challenge.",
-      "mainLocation": null,
-      "intensity": 60,
-      "color": "#ff2d55",
-      "url": "https://www.aljazeera.com/sports/2026/2/7/carrick-extends-winning-run-as-man-united-beat-10-man-tottenham-2-0",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/02/getty_698731a688-1770467750.jpg?resize=1920%2C1440"
-    },
-    {
-      "id": 2,
-      "headline": "Social media flooded with posts about Savannah Guthrie’s missing mom",
-      "description": "Moments after the news broke about the apparent abduction of “Today” show host Savannah Guthrie’s mo...",
-      "mainLocation": null,
-      "intensity": 60,
-      "color": "#ff6b35",
-      "url": "https://apnews.com/article/search-nancy-guthrie-social-media-posts-e176abcc670af3844416946fb3bb5619",
-      "imageUrl": "https://dims.apnews.com/dims4/default/64ff69e/2147483647/strip/true/crop/1864x1242+0+293/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F21%2F53%2Fe8418ed0fd4094248466788e3acc%2F4d30ec82218f4fecb1bcac22c8467af0"
-    },
-    {
-      "id": 3,
-      "headline": "Atrial fibrillation symptoms and treatments: What to know",
-      "description": "Atrial fibrillation, or A-fib, is becoming more common, but doctors say treatments are improving. Th...",
-      "mainLocation": null,
-      "intensity": 60,
-      "color": "#ffb800",
-      "url": "https://apnews.com/article/what-is-atrial-fibrillation-afib-68365b1f1cfc17bf4363f6ca0180daed",
-      "imageUrl": "https://dims.apnews.com/dims4/default/b5034ad/2147483647/strip/true/crop/1080x720+0+600/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2Fa5%2F23%2F415dfd6cd3c6ad0171d18c40e471%2F3176126828.jpg"
-    },
-    {
-      "id": 4,
-      "headline": "US wants Russia and Ukraine to end war by June, says Zelensky",
-      "description": "The Ukrainian leader says difficult issues remain, as Russia carries out further strikes on energy facilities.",
+      "headline": "Zelenskyy says U.S. gave Ukraine and Russia a June deadline to reach agreement to end war",
+      "description": "Zelenskyy says Ukraine and Russia have a June deadline for a peace agreement.",
       "mainLocation": {
         "name": "KYIV, UKRAINE",
         "lat": 50.4500336,
         "lng": 30.5241361
       },
-      "intensity": 60,
+      "intensity": 75,
+      "color": "#ff2d55",
+      "url": "https://apnews.com/article/russia-ukraine-war-zelenskyy-june-deadline-98da4e17de8ab377363ae9c3ff308001",
+      "imageUrl": "https://dims.apnews.com/dims4/default/7a6e82b/2147483647/strip/true/crop/5584x3721+0+1/resize/980x653!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F01%2F17%2F890d53bd9225f48539907b6f1e3b%2Fb0c5c959afb44e8f9ca9da6053652836"
+    },
+    {
+      "id": 3,
+      "headline": "Reporter’s Notebook: Portugal’s far right surges in presidential election",
+      "description": "In the tourist haven of the Algarve, disaffected locals are embracing the far right as the cost of living rises.",
+      "mainLocation": {
+        "name": "ALGARVE, PORTUGAL",
+        "lat": 37.2449218,
+        "lng": -8.1959563
+      },
+      "intensity": 45,
+      "color": "#ffb800",
+      "url": "https://www.aljazeera.com/features/2026/2/7/portugal-far-right-presidential-election-historic-victory",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/02/afp_6986dfa31e03-1770446755.jpg?resize=1200%2C675"
+    },
+    {
+      "id": 4,
+      "headline": "Thousands mourn 32 victims of Islamabad Shia mosque bombing in Pakistan",
+      "description": "Pakistan blames ‘Indian-backed proxies’ for the attack; New Delhi rejected the accusation as ‘baseless and pointless’.",
+      "mainLocation": {
+        "name": "ISLAMABAD, PAKISTAN",
+        "lat": 33.6938118,
+        "lng": 73.0651511
+      },
+      "intensity": 65,
       "color": "#34c759",
-      "url": "https://www.bbc.co.uk/news/articles/cd0y0y9z231o",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/0223/live/a3873ed0-0415-11f1-9154-2f1cc68521d4.jpg"
+      "url": "https://www.aljazeera.com/news/2026/2/7/thousands-mourn-32-victims-of-islamabad-shia-mosque-bombing-in-pakistan",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/02/afp_6986f01b28a3-1770450971.jpg?resize=1920%2C1440"
     },
     {
       "id": 5,
-      "headline": "Emails reveal more details of Epstein's celeb dinner for Andrew",
-      "description": "The messages appear to contradict previous comments made by Andrew Mountbatten-Windsor about a 2010 ...",
-      "mainLocation": null,
-      "intensity": 60,
+      "headline": "Epstein emails raise questions over role of Andrew's palace aide",
+      "description": "Emails suggest a trusted royal insider invited Epstein to a dinner at Windsor Castle in 2017.",
+      "mainLocation": {
+        "name": "WINDSOR, UK",
+        "lat": 51.4837886,
+        "lng": -0.6040419
+      },
+      "intensity": 45,
       "color": "#5ac8fa",
-      "url": "https://www.bbc.co.uk/news/articles/c4g0gpdk7q6o",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/9265/live/930fdda0-037a-11f1-87c9-3368cc80f36d.jpg"
+      "url": "https://www.bbc.co.uk/news/articles/cx2w2ywe9e0o",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/54e9/live/59b60420-0394-11f1-b7e1-afb6d0884c18.jpg"
+    },
+    {
+      "id": 6,
+      "headline": "Norway's crown princess apologises after pressure over Epstein friendship",
+      "description": "Mette-Marit says she is sorry to Norwegians for not realising what kind of person the late sex offender was.",
+      "mainLocation": {
+        "name": "OSLO, NORWAY",
+        "lat": 59.9133301,
+        "lng": 10.7389701
+      },
+      "intensity": 45,
+      "color": "#ff2d55",
+      "url": "https://www.bbc.co.uk/news/articles/c78v8wx6jjxo",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/c1e7/live/9de81cb0-038e-11f1-a36d-4dc7f32cefeb.jpg"
     }
   ]
 }

@@ -9,6 +9,7 @@ Global Pulse is an experimental project that captures a "daily snapshot" of the 
 
 ### Tech Stack:
 - **p5.js** for generative visualization.
+- **Blotter.js** for web-based text effects (ChannelSplitMaterial).
 - **Node.js** for the automated news-gathering bot.
 - **GitHub Actions** for daily autonomous updates and data archiving.
 

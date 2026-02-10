@@ -18,11 +18,16 @@ function initBlotter(text) {
     
     // Use date-based seed so parameters are stable throughout the day
     let dateSeed = day() + month() * 31 + year() * 365;
-    randomSeed(dateSeed);
     
-    // Generate daily random values
-    let dailyOffset = random(0, 0.059);
-    let dailyRotation = random(0, 360);
+    // Hash the seed to spread similar dates far apart in the random space.
+    // Without this, consecutive dates produce nearly identical random values
+    // because p5's LCG doesn't diffuse close seeds.
+    let hashedSeed = Math.floor(Math.abs(Math.sin(dateSeed * 9301 + 49297) * 233280));
+    randomSeed(hashedSeed);
+    
+    // Generate daily random values — wider ranges for visible daily variation
+    let dailyOffset = random(0.02, 0.15);  // channel split amount (was 0–0.059, too narrow)
+    let dailyRotation = random(0, 360);     // split angle in degrees
     
     // Create material
     // Check if Blotter and ChannelSplitMaterial are available
@@ -33,6 +38,10 @@ function initBlotter(text) {
         bottomWordMaterial.uniforms.uApplyBlur.value = 1.0;
         bottomWordMaterial.uniforms.uAnimateNoise.value = 1.0;
         
+        // Match the background color for the RGB splitting effect
+        // [R, G, B, A] in 0.0 to 1.0 range. #08090c is approx [0.03, 0.035, 0.047, 1.0]
+        bottomWordMaterial.uniforms.uBlendColor.value = [0.03, 0.035, 0.047, 1.0];
+        
         // Create text
         const textObj = new Blotter.Text(text, {
             family: "'PP Neue Bit', serif",
@@ -42,7 +51,7 @@ function initBlotter(text) {
             paddingLeft: 40,
             paddingRight: 40,
             paddingTop: 40,
-            paddingBottom: 40
+            paddingBottom: 0
         });
         
         // Create Blotter instance

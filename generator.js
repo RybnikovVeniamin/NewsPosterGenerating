@@ -9,6 +9,11 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+// Higher temperature for word-of-the-day → more variety, less repetition
+const sentimentModel = genAI.getGenerativeModel({
+    model: "gemini-2.0-flash",
+    generationConfig: { temperature: 0.95 }
+});
 
 // List of keywords for finding locations in text (countries and major regions)
 const countryKeywords = {
@@ -181,20 +186,48 @@ async function getCoordinates(locationName) {
 }
 
 /**
+ * Get recently used "word of the day" from archive (last 7 days) to avoid repetition
+ */
+function getRecentBottomWords() {
+    const archiveDir = path.join(__dirname, 'archive');
+    if (!fs.existsSync(archiveDir)) return [];
+    const files = fs.readdirSync(archiveDir)
+        .filter(f => f.startsWith('poster-') && f.endsWith('.json'))
+        .sort()
+        .reverse()
+        .slice(0, 7);
+    const recent = [];
+    for (const f of files) {
+        try {
+            const data = JSON.parse(fs.readFileSync(path.join(archiveDir, f), 'utf8'));
+            if (data.bottomWord) recent.push(data.bottomWord.toUpperCase());
+        } catch (_) {}
+    }
+    return [...new Set(recent)];
+}
+
+/**
  * Function to determine the main word of the day via AI
+ * Uses higher temperature + "avoid recent" for more variety
  */
 async function analyzeGlobalSentiment(stories) {
     try {
         const fullText = stories.map(s => `${s.headline}. ${s.description}`).join("\n");
-        const prompt = `Analyze these news stories and determine one single powerful word (in English, uppercase) that captures the overall global mood or theme of the day. 
-        The word should be impactful, like: TENSION, ESCALATION, INNOVATION, CRISIS, TRANSITION, DISRUPTION, or POWER.
-        
+        const recentWords = getRecentBottomWords();
+        const avoidLine = recentWords.length > 0
+            ? `\nIMPORTANT: Do NOT use any of these recently used words (pick something different): ${recentWords.join(', ')}`
+            : '';
+
+        const prompt = `Analyze these news stories and determine one single powerful word (in English, uppercase) that captures the overall global mood or theme of the day.
+        The word should be impactful and distinctive. Examples of good words: TENSION, ESCALATION, INNOVATION, CRISIS, TRANSITION, DISRUPTION, POWER, RESILIENCE, SHIFT, MOMENTUM, DIALOGUE, RIFT, CONVERGENCE.
+        Pick a word that feels specific to TODAY's news — avoid generic fallbacks.${avoidLine}
+
         News stories:
         ${fullText}
-        
+
         Return ONLY the single word in uppercase.`;
 
-        const result = await model.generateContent(prompt);
+        const result = await sentimentModel.generateContent(prompt);
         const response = await result.response;
         return response.text().trim().toUpperCase().replace(/[^A-Z]/g, '');
     } catch (error) {
@@ -329,7 +362,12 @@ async function generateDailyData() {
             }
 
             // Determine main word of day via AI
-            console.log(`\n🧠 AI analyzing overall daily sentiment...`);
+            const recentWords = getRecentBottomWords();
+            if (recentWords.length > 0) {
+                console.log(`\n🧠 AI analyzing overall daily sentiment (avoiding recent: ${recentWords.join(', ')})...`);
+            } else {
+                console.log(`\n🧠 AI analyzing overall daily sentiment...`);
+            }
             const globalSentiment = await analyzeGlobalSentiment(topStories);
             console.log(`✨ Main word of the day: ${globalSentiment}`);
 

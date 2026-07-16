@@ -3,9 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// API Keys
-const NEWS_API_KEY = process.env.NEWS_API_KEY || 'e995fc4497af487f887bf84cd5f679e8';
+// API Keys (set via GitHub Secrets or local environment — never commit real keys)
+const NEWS_API_KEY = process.env.NEWS_API_KEY;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+if (!NEWS_API_KEY || !GEMINI_API_KEY) {
+    console.error('Missing NEWS_API_KEY or GEMINI_API_KEY. Set them as environment variables or GitHub Secrets.');
+    process.exit(1);
+}
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });

@@ -1,24 +1,56 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const Anthropic = require("@anthropic-ai/sdk");
 
 // API Keys (set via GitHub Secrets or local environment — never commit real keys)
 const NEWS_API_KEY = process.env.NEWS_API_KEY;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
-if (!NEWS_API_KEY || !GEMINI_API_KEY) {
-    console.error('Missing NEWS_API_KEY or GEMINI_API_KEY. Set them as environment variables or GitHub Secrets.');
+// NEWS_API_KEY is only needed for the daily run; rebuild.js re-analyzes archived stories without it.
+if (require.main === module && (!NEWS_API_KEY || !ANTHROPIC_API_KEY)) {
+    console.error('Missing NEWS_API_KEY or ANTHROPIC_API_KEY. Set them as environment variables or GitHub Secrets.');
     process.exit(1);
 }
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
-// Higher temperature for word-of-the-day → more variety, less repetition
-const sentimentModel = genAI.getGenerativeModel({
-    model: "gemini-3.5-flash",
-    generationConfig: { temperature: 0.95 }
-});
+const anthropic = new Anthropic();
+const CLAUDE_MODEL = "claude-opus-5-5";
+const aiStats = { calls: 0, failures: 0 };
+
+/**
+ * Send one prompt to Claude and return the text of its answer.
+ * Throws on API errors and refusals so each caller's catch block can apply its own default.
+ */
+async function askClaude(prompt) {
+    aiStats.calls++;
+    try {
+        return await requestClaude(prompt);
+    } catch (error) {
+        aiStats.failures++;
+        throw error;
+    }
+}
+
+async function requestClaude(prompt) {
+    const response = await anthropic.beta.messages.create({
+        model: CLAUDE_MODEL,
+        max_tokens: 2000,
+        output_config: { effort: "low" }, // short classification/rewrite tasks
+        betas: ["server-side-fallback-2026-07-01"],
+        fallbacks: "default", // retry on another model if a request is declined
+        messages: [{ role: "user", content: prompt }],
+    });
+    if (response.stop_reason === "refusal") {
+        throw new Error(`Claude declined the request (${response.stop_details?.category ?? "no category"})`);
+    }
+    const text = response.content
+        .filter(block => block.type === "text")
+        .map(block => block.text)
+        .join("")
+        .trim();
+    if (!text) throw new Error(`Empty response (stop_reason: ${response.stop_reason})`);
+    return text;
+}
 
 // List of keywords for finding locations in text (countries and major regions)
 const countryKeywords = {
@@ -82,11 +114,12 @@ async function analyzeLocationWithAI(title, description) {
         
         Return ONLY the city and country name, separated by a comma. If no specific location can be determined, return "Global". If it should be skipped, return "Skip".`;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text().trim();
+        const text = await askClaude(prompt);
         
-        return text !== "Global" ? text : null;
+        const cleaned = text.replace(/[."'\s]+$/g, '').replace(/^["'\s]+/g, '');
+        if (/^skip\b/i.test(cleaned)) return "Skip";
+        if (/^global\b/i.test(cleaned)) return null;
+        return cleaned;
     } catch (error) {
         console.error("⚠️ AI error analyzing location:", error.message);
         return null;
@@ -108,9 +141,7 @@ async function analyzeIntensityWithAI(title, description) {
         
         Return ONLY the number.`;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text().trim();
+        const text = await askClaude(prompt);
         const intensity = parseInt(text.replace(/[^0-9]/g, ''));
         
         return isNaN(intensity) ? 60 : Math.min(100, Math.max(40, intensity));
@@ -132,9 +163,7 @@ async function shortenHeadlineWithAI(headline) {
         
         Return ONLY the shortened headline text in uppercase.`;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim().toUpperCase();
+        return (await askClaude(prompt)).toUpperCase();
     } catch (error) {
         console.error("⚠️ AI error shortening headline:", error.message);
         return headline.substring(0, 60).toUpperCase();
@@ -154,9 +183,7 @@ async function shortenDescriptionWithAI(headline, description) {
         
         Return ONLY the shortened description text.`;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim();
+        return (await askClaude(prompt));
     } catch (error) {
         console.error("⚠️ AI error shortening text:", error.message);
         return description.substring(0, 100) + "...";
@@ -215,10 +242,9 @@ function getRecentBottomWords() {
  * Function to determine the main word of the day via AI
  * Uses higher temperature + "avoid recent" for more variety
  */
-async function analyzeGlobalSentiment(stories) {
+async function analyzeGlobalSentiment(stories, recentWords = getRecentBottomWords()) {
     try {
         const fullText = stories.map(s => `${s.headline}. ${s.description}`).join("\n");
-        const recentWords = getRecentBottomWords();
         const avoidLine = recentWords.length > 0
             ? `\nIMPORTANT: Do NOT use any of these recently used words (pick something different): ${recentWords.join(', ')}`
             : '';
@@ -232,9 +258,7 @@ async function analyzeGlobalSentiment(stories) {
 
         Return ONLY the single word in uppercase.`;
 
-        const result = await sentimentModel.generateContent(prompt);
-        const response = await result.response;
-        return response.text().trim().toUpperCase().replace(/[^A-Z]/g, '');
+        return (await askClaude(prompt)).toUpperCase().replace(/[^A-Z]/g, '');
     } catch (error) {
         console.error("⚠️ AI error analyzing sentiment:", error.message);
         return "GLOBAL";
@@ -376,6 +400,14 @@ async function generateDailyData() {
             const globalSentiment = await analyzeGlobalSentiment(topStories);
             console.log(`✨ Main word of the day: ${globalSentiment}`);
 
+            // If every AI request failed, the poster would be all defaults (GLOBAL, intensity 60).
+            // Fail the job instead of publishing it, so the problem shows up as a red run.
+            if (aiStats.calls > 0 && aiStats.failures === aiStats.calls) {
+                console.error(`❌ All ${aiStats.calls} AI requests failed — not saving a poster made of default values.`);
+                process.exitCode = 1;
+                return;
+            }
+
             const result = {
                 date: new Date().toISOString().split('T')[0],
                 displayDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase(),
@@ -396,10 +428,24 @@ async function generateDailyData() {
             
         } else {
             console.error("❌ No news found or API error");
+            process.exitCode = 1;
         }
     } catch (error) {
         console.error("❌ Critical robot error:", error);
+        process.exitCode = 1;
     }
 }
 
-generateDailyData();
+if (require.main === module) {
+    generateDailyData();
+}
+
+module.exports = {
+    analyzeLocationWithAI,
+    analyzeIntensityWithAI,
+    shortenDescriptionWithAI,
+    analyzeGlobalSentiment,
+    getCoordinates,
+    aiStats,
+    countryKeywords,
+};

@@ -1,0 +1,44 @@
+name: Rebuild Posters
+
+on:
+  workflow_dispatch: # Manual run only
+    inputs:
+      from:
+        description: 'First date to rebuild (YYYY-MM-DD)'
+        required: true
+      to:
+        description: 'Last date to rebuild (YYYY-MM-DD), defaults to the first date'
+        required: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Rebuild posters
+      run: node rebuild.js "$FROM" "${TO:-$FROM}"
+      env:
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        FROM: ${{ inputs.from }}
+        TO: ${{ inputs.to }}
+
+    - name: Commit and push changes
+      if: always()
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add archive/*.json latest.json
+        git commit -m "Rebuild posters: ${{ inputs.from }} to ${{ inputs.to || inputs.from }}" || exit 0
+        git pull --rebase -X theirs origin main
+        git push origin main

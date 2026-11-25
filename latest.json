@@ -1,77 +1,77 @@
 {
-  "date": "2026-11-24",
-  "displayDate": "NOV 24, 2026",
-  "bottomWord": "SPILLOVER",
+  "date": "2026-11-25",
+  "displayDate": "NOV 25, 2026",
+  "bottomWord": "PROVOCATION",
   "stories": [
     {
       "id": 1,
-      "headline": "US escalates sanctions on Iran, targets ‘shadow banking’ networks",
-      "description": "US Treasury sanctions over two dozen Iranian entities, citing efforts to disrupt Tehran’s global financial activities.",
+      "headline": "Israel’s Ben-Gvir accused of seeking ‘religious war’ over mosque raids",
+      "description": "Israeli police have confiscated mosque loudspeakers as far-right lawmakers push legislation to restrict call to prayer.",
+      "mainLocation": {
+        "name": "JERUSALEM, ISRAEL",
+        "lat": 31.7788472,
+        "lng": 35.2257856
+      },
+      "intensity": 52,
+      "color": "#ff2d55",
+      "url": "https://www.aljazeera.com/news/2026/11/24/israels-ben-gvir-accused-of-seeking-religious-war-over-mosque-raids",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/ap_6b05d7d4e2386-1795545044.jpg?resize=1920%2C1440"
+    },
+    {
+      "id": 2,
+      "headline": "Democrats clinch historic House majority, largest since 1990",
+      "description": "House Democrats won 259 seats, their best general election result in decades.",
       "mainLocation": {
         "name": "WASHINGTON, UNITED STATES",
         "lat": 38.8950982,
         "lng": -77.0363849
       },
-      "intensity": 58,
-      "color": "#ff2d55",
-      "url": "https://www.aljazeera.com/news/2026/11/23/us-escalates-sanctions-on-iran-targets-shadow-banking-networks",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2025/08/2025-06-23T163901Z_2116085940_RC2G8FAM4IDS_RTRMADP_3_IRAN-NUCLEAR-ENERGY-1755798951.jpg?resize=1920%2C1440"
-    },
-    {
-      "id": 6,
-      "headline": "What strike on Russian ship in Libya says about spread of Ukraine war",
-      "description": "Ukraine's sinking of a Russian battleship at a port in Libya raises the stakes of the war a notch, writes Frank Gardner.",
-      "mainLocation": {
-        "name": "BENGHAZI, LIBYA",
-        "lat": 32.1200168,
-        "lng": 20.0812174
-      },
       "intensity": 72,
-      "color": "#ff2d55",
-      "url": "https://www.bbc.co.uk/news/articles/cm894p88jzxpo",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/363b/live/dab0da20-e771-11f1-99a1-253766e7ad8b.jpg"
+      "color": "#ff6b35",
+      "url": "https://apnews.com/article/democrats-house-majority-election-2026-congress-07b3ccbe60db7c1d3d3f3087d8fca721",
+      "imageUrl": "https://dims.apnews.com/dims4/default/34c8b56/2147483647/strip/false/crop/8618x5746+0+0/resize/1200x800!/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F9b%2F20%2F1d6d53f93817c62c4fee7da5f3ff%2F1ad70702c20644e09bc3bf19132fd05f"
     },
     {
-      "id": 8,
-      "headline": "Protesting Bangladesh garment workers reject pay offer",
-      "description": "Bangladesh’s garment industry brings in about $38bn a year. The minimum wage is around 12,500 taka ($100) per month.",
+      "id": 5,
+      "headline": "US sanctions on Lebanon’s Hezbollah-affiliates may have limited impact",
+      "description": "Analysts say US sanctions unlikely to weaken Hezbollah significantly, but risk hurting everyday Lebanese.",
       "mainLocation": {
-        "name": "DHAKA, BANGLADESH",
-        "lat": 23.7643863,
-        "lng": 90.3890144
+        "name": "BEIRUT, LEBANON",
+        "lat": 33.8892265,
+        "lng": 35.5025585
       },
-      "intensity": 55,
-      "color": "#ffb800",
-      "url": "https://www.aljazeera.com/news/2026/11/23/protesting-bangladesh-garment-workers-reject-pay-offer",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/AFP__20261117__D7PB4T3__v1__HighRes__BangladeshPoliticsTextileLabourProtest-1794907389.jpg?resize=1920%2C1440"
+      "intensity": 52,
+      "color": "#5ac8fa",
+      "url": "https://www.aljazeera.com/news/2026/11/24/us-sanctions-on-lebanons-hezbollah-affiliates-may-have-limited-impact",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/09/afp_6ab9d4e1ea0d-1790563553.jpg?resize=1920%2C1440"
     },
     {
-      "id": 10,
-      "headline": "Andrew received £750,000 from Turkish millionaire, court told",
-      "description": "The former Duke of York is expected to give evidence in the complex court case next month.",
+      "id": 7,
+      "headline": "French ex-President Nicolas Sarkozy and wife Carla Bruni to be tried next year",
+      "description": "It is the latest case involving Nicolas Sarkozy who became the first French ex-president to go to jail last year.",
       "mainLocation": {
-        "name": "LONDON, UNITED KINGDOM",
-        "lat": 51.5074456,
-        "lng": -0.1277653
+        "name": "PARIS, FRANCE",
+        "lat": 48.8534951,
+        "lng": 2.3483915
       },
       "intensity": 45,
-      "color": "#5ac8fa",
-      "url": "https://www.bbc.co.uk/news/articles/c9gkldn06l87o",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/6623/live/1aecace0-e759-11f1-b407-33329b1ec67a.jpg"
+      "color": "#ff6b35",
+      "url": "https://www.bbc.co.uk/news/articles/c65y17pwv1z7o",
+      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/84cb/live/68cc7a10-e81e-11f1-ab42-55d8d8278025.jpg"
     },
     {
-      "id": 11,
-      "headline": "Russia threatens ‘hostile’ Estonia with ‘open war’",
-      "description": "Moscow accuses Tallinn of ‘hostile actions’ citing border closure and claiming it is allowing Ukraine to launch attacks.",
+      "id": 9,
+      "headline": "Palestine Weekly: A night of arson sees Israel ‘Jewish terrorism’ reckoning",
+      "description": "Israeli settler pogroms have continued in the occupied West Bank.",
       "mainLocation": {
-        "name": "MOSCOW, RUSSIA",
-        "lat": 55.625578,
-        "lng": 37.6063916
+        "name": "RAMALLAH, PALESTINE",
+        "lat": 31.9231906,
+        "lng": 35.2108501
       },
-      "intensity": 85,
-      "color": "#ff2d55",
-      "url": "https://www.aljazeera.com/news/2026/11/23/russia-threatens-hostile-estonia-with-open-war",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/reuters_6b00a388-1795203976.jpg?resize=1920%2C1440"
+      "intensity": 55,
+      "color": "#34c759",
+      "url": "https://www.aljazeera.com/news/2026/11/24/palestine-weekly-a-night-of-arson-sees-israel-jewish-terrorism-reckoning",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/afp_6b030e4d0bc8-1795362381.jpg?resize=1920%2C1440"
     }
   ]
 }

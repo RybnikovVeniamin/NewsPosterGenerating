@@ -1,77 +1,77 @@
 {
-  "date": "2026-11-27",
-  "displayDate": "NOV 27, 2026",
-  "bottomWord": "LEGITIMACY",
+  "date": "2026-11-28",
+  "displayDate": "NOV 28, 2026",
+  "bottomWord": "CLAMPDOWN",
   "stories": [
     {
       "id": 1,
-      "headline": "Trump calls GDP data released before midterms ‘fake’, demands investigation",
-      "description": "President says it was a deliberate decision to release ‘fake’ growth numbers before US midterm elections.",
+      "headline": "Israel’s Eisenkot accuses Netanyahu’s party of stalling coalition talks",
+      "description": "Yashar party chief says Likud wants to drag Israel into another election under the outgoing government.",
       "mainLocation": {
-        "name": "WASHINGTON, UNITED STATES",
-        "lat": 38.8950982,
-        "lng": -77.0363849
+        "name": "JERUSALEM, ISRAEL",
+        "lat": 31.7788472,
+        "lng": 35.2257856
       },
-      "intensity": 55,
+      "intensity": 45,
       "color": "#ff2d55",
-      "url": "https://www.aljazeera.com/economy/2026/11/26/trump-calls-gdp-data-released-before-midterms-fake-demands-investigation",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/ap_6b04cf1d0634b-1795477277.jpg?resize=1920%2C1440"
+      "url": "https://www.aljazeera.com/news/2026/11/27/israels-eisenkot-accuses-netanyahus-party-of-stalling-coalition-talks",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/AFP__20261125__D8KZ93E__v1__HighRes__IsraelPoliticsParliament-1795794655.jpg?resize=1920%2C1440"
     },
     {
       "id": 2,
-      "headline": "Guinea-Bissau presidential election delayed by two years",
-      "description": "Military leaders say presidential and legislative poll scheduled for December 6 will now take place in November 2028.",
+      "headline": "Norse Atlantic files for bankruptcy, halts flights and ticket sales",
+      "description": "Passengers advised to seek refunds via bankruptcy process, though guarantees are not assured, warns Norse Atlantic.",
       "mainLocation": {
-        "name": "BISSAU, GUINEA-BISSAU",
-        "lat": 11.861324,
-        "lng": -15.583055
+        "name": "ARENDAL, NORWAY",
+        "lat": 58.4267301,
+        "lng": 8.9469491
       },
       "intensity": 45,
       "color": "#ff6b35",
-      "url": "https://www.aljazeera.com/news/2026/11/26/guinea-bissau-presidential-election-delayed-by-two-years",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/afp_6b086d135f5d-1795714323.jpg?resize=1920%2C1440"
+      "url": "https://www.aljazeera.com/economy/2026/11/27/norse-atlantic-files-for-bankruptcy-halts-flights-and-ticket-sales",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/reuters_6b09a999-1795795353.jpg?resize=1920%2C1440"
     },
     {
-      "id": 4,
-      "headline": "EU leaders struggle to agree on long-term budget, more money for Ukraine",
-      "description": "The bloc is holding an extraordinary summit in Brussels to discuss its budget proposal for 2028 to 2034.",
+      "id": 3,
+      "headline": "Trump backs Iraqi PM’s oil smuggling crackdown",
+      "description": "Baghdad closes border crossings as Kurdish authorities warn of constitutional violations and call for meeting.",
       "mainLocation": {
-        "name": "BRUSSELS, BELGIUM",
-        "lat": 50.8467372,
-        "lng": 4.352493
+        "name": "BAGHDAD, IRAQ",
+        "lat": 33.3061701,
+        "lng": 44.3872213
       },
-      "intensity": 58,
-      "color": "#34c759",
-      "url": "https://www.aljazeera.com/economy/2026/11/26/eu-leaders-struggle-to-agree-on-long-term-budget-more-money-for-ukraine",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/AFP__20261126__D8NR9MQ__v1__HighRes__BelgiumEuCouncilSummit-1795708617.jpg?resize=1920%2C1440"
+      "intensity": 45,
+      "color": "#ffb800",
+      "url": "https://www.aljazeera.com/news/2026/11/27/trump-backs-iraqi-pms-oil-smuggling-crackdown",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/reuters_6b09a50c-1795794188.jpg?resize=1920%2C1440"
     },
     {
       "id": 6,
-      "headline": "How a teen’s death raises questions about Colombia’s security crackdown",
-      "description": "President Abelardo de la Espriella’s campaign against armed groups has resulted in accusations of extrajudicial killing.",
+      "headline": "Serbia’s student-led movement nominates chemistry professor for presidency",
+      "description": "Radomir Saicic, who teaches at Belgrade University, was among the first university professors to join the movement.",
       "mainLocation": {
-        "name": "BOGOTÁ, COLOMBIA",
-        "lat": 4.6533817,
-        "lng": -74.0836331
+        "name": "BELGRADE, SERBIA",
+        "lat": 44.8153318,
+        "lng": 20.4456588
       },
-      "intensity": 48,
+      "intensity": 45,
       "color": "#ff2d55",
-      "url": "https://www.aljazeera.com/news/longform/2026/11/26/how-a-teens-death-raises-questions-about-colombias-security-crackdown",
-      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/AFP__20260925__C9BM766__v1__HighRes__ColombiaConflictDrugs-1795137721.jpg?resize=1920%2C1440"
+      "url": "https://www.aljazeera.com/news/2026/11/27/serbias-student-led-movement-nominates-chemistry-professor-for-presidency",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/AFP__20261127__D8TN37B__v1__HighRes__SerbiaPoliticsElection-1795790157.jpg?resize=1920%2C1440"
     },
     {
-      "id": 8,
-      "headline": "Nearly 100 Labour MPs including ministerial aides oppose Rosebank oil field",
-      "description": "Energy Secretary Miatta Fahnbulleh will decide on drilling at the Shetland oil field within weeks.",
+      "id": 7,
+      "headline": "Canada’s top court largely upholds Quebec’s religious symbols ban",
+      "description": "Quebec’s ban on teachers and police wearing religious symbols such as hijabs and turbans on the job remains in place.",
       "mainLocation": {
-        "name": "LONDON, UNITED KINGDOM",
-        "lat": 51.5074456,
-        "lng": -0.1277653
+        "name": "OTTAWA, CANADA",
+        "lat": 45.4208777,
+        "lng": -75.6901106
       },
-      "intensity": 42,
-      "color": "#ffb800",
-      "url": "https://www.bbc.co.uk/news/articles/cw24ez32d1n4o",
-      "imageUrl": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/60a5/live/584f1ed0-cfb0-11f1-9012-0172b9f73a72.jpg"
+      "intensity": 55,
+      "color": "#ff6b35",
+      "url": "https://www.aljazeera.com/news/2026/11/27/canadas-top-court-largely-upholds-quebecs-religious-symbols-ban",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/2025-05-08T053717Z_356236024_RC2H8EAI2Q5U_RTRMADP_3_CANADA-COURT-1795792155.jpg?resize=1920%2C1440"
     }
   ]
 }

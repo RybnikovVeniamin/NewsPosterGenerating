@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-28",
+  "displayDate": "NOV 28, 2026",
+  "bottomWord": "CLAMPDOWN",
+  "stories": [
+    {
+      "id": 1,
+      "headline": "Israel’s Eisenkot accuses Netanyahu’s party of stalling coalition talks",
+      "description": "Yashar party chief says Likud wants to drag Israel into another election under the outgoing government.",
+      "mainLocation": {
+        "name": "JERUSALEM, ISRAEL",
+        "lat": 31.7788472,
+        "lng": 35.2257856
+      },
+      "intensity": 45,
+      "color": "#ff2d55",
+      "url": "https://www.aljazeera.com/news/2026/11/27/israels-eisenkot-accuses-netanyahus-party-of-stalling-coalition-talks",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/AFP__20261125__D8KZ93E__v1__HighRes__IsraelPoliticsParliament-1795794655.jpg?resize=1920%2C1440"
+    },
+    {
+      "id": 2,
+      "headline": "Norse Atlantic files for bankruptcy, halts flights and ticket sales",
+      "description": "Passengers advised to seek refunds via bankruptcy process, though guarantees are not assured, warns Norse Atlantic.",
+      "mainLocation": {
+        "name": "ARENDAL, NORWAY",
+        "lat": 58.4267301,
+        "lng": 8.9469491
+      },
+      "intensity": 45,
+      "color": "#ff6b35",
+      "url": "https://www.aljazeera.com/economy/2026/11/27/norse-atlantic-files-for-bankruptcy-halts-flights-and-ticket-sales",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/reuters_6b09a999-1795795353.jpg?resize=1920%2C1440"
+    },
+    {
+      "id": 3,
+      "headline": "Trump backs Iraqi PM’s oil smuggling crackdown",
+      "description": "Baghdad closes border crossings as Kurdish authorities warn of constitutional violations and call for meeting.",
+      "mainLocation": {
+        "name": "BAGHDAD, IRAQ",
+        "lat": 33.3061701,
+        "lng": 44.3872213
+      },
+      "intensity": 45,
+      "color": "#ffb800",
+      "url": "https://www.aljazeera.com/news/2026/11/27/trump-backs-iraqi-pms-oil-smuggling-crackdown",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/reuters_6b09a50c-1795794188.jpg?resize=1920%2C1440"
+    },
+    {
+      "id": 6,
+      "headline": "Serbia’s student-led movement nominates chemistry professor for presidency",
+      "description": "Radomir Saicic, who teaches at Belgrade University, was among the first university professors to join the movement.",
+      "mainLocation": {
+        "name": "BELGRADE, SERBIA",
+        "lat": 44.8153318,
+        "lng": 20.4456588
+      },
+      "intensity": 45,
+      "color": "#ff2d55",
+      "url": "https://www.aljazeera.com/news/2026/11/27/serbias-student-led-movement-nominates-chemistry-professor-for-presidency",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/AFP__20261127__D8TN37B__v1__HighRes__SerbiaPoliticsElection-1795790157.jpg?resize=1920%2C1440"
+    },
+    {
+      "id": 7,
+      "headline": "Canada’s top court largely upholds Quebec’s religious symbols ban",
+      "description": "Quebec’s ban on teachers and police wearing religious symbols such as hijabs and turbans on the job remains in place.",
+      "mainLocation": {
+        "name": "OTTAWA, CANADA",
+        "lat": 45.4208777,
+        "lng": -75.6901106
+      },
+      "intensity": 55,
+      "color": "#ff6b35",
+      "url": "https://www.aljazeera.com/news/2026/11/27/canadas-top-court-largely-upholds-quebecs-religious-symbols-ban",
+      "imageUrl": "https://www.aljazeera.com/wp-content/uploads/2026/11/2025-05-08T053717Z_356236024_RC2H8EAI2Q5U_RTRMADP_3_CANADA-COURT-1795792155.jpg?resize=1920%2C1440"
+    }
+  ]
+}
